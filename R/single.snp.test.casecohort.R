@@ -1,0 +1,25 @@
+single.snp.test.casecohort <-
+function ( snps, trait ,
+   patid , start.time , stop.time , subcohort , stratvar=NA ,
+   method=c("prentice") ,
+   robust=F , adj.var=NULL ,   prt=T  ) {
+
+  snps <- as.matrix(snps)
+
+  if ( any (  !((trait==0)|(trait==1) )) ) {
+    stop ("Error in single.snp.test.casecohort: case must be 1 (=case) or 0 (=non-case).")
+  }
+
+  if ( method=="prentice"  ) {
+    res <- single.snp.test.casecohort.prentice ( snps, trait , patid ,
+        start.time , stop.time , subcohort , stratvar , robust=robust ,
+        adj.var=adj.var , prt=prt )
+  }
+
+  # Barlow is missing ............
+  
+
+  return ( res )
+  
+} # end of single.snp.test.survival.casecohort
+
