@@ -1,3 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% library(HapEstXXR)
+% Created: November 30, 2011
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \name{makeHaploviewInputFile}
 \alias{makeHaploviewInputFile}
 \title{
@@ -37,7 +43,7 @@ no return values.
 Barrett JC, Fry B, Maller J, Daly MJ. Haploview: analysis and visualization
 
 
-of LD and haplotype maps. Bioinformatics. 2005 Jan 15 [PubMed ID: 15297300];
+of LD and haplotype maps. Bioinformatics. 2005; 21(2):263-265. [PubMed ID: 15297300]
 
 
 Haploview/URL: http://www.broadinstitute.org/mpg/haploview

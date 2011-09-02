@@ -1,7 +1,8 @@
 msr <-
-function (  famid , patid , fid , mid , snps, trait, adj.var=NA , lim =0.05, maxSNP = 3,
-    nt = 10, pair.begin = FALSE, pattern.begin.mat=NA, select.criteria = "p.value" ,
-    type = "gaussian" , method="forward" ,
+function (  famid , patid , fid , mid , snps, trait,
+    adj.var=NA , lim =0.05, maxSNP = 3 ,
+    nt = 10, pair.begin = FALSE, pattern.begin.mat=NA,
+    type = "gaussian" ,
     baseline.hap="max" , min.count=10 , sort=F )
 {
 
@@ -28,30 +29,12 @@ function (  famid , patid , fid , mid , snps, trait, adj.var=NA , lim =0.05, max
 
     # check input test
 
-    trait.type <- match(type, c("binomial","gaussian","families","survival"))
-
-    # check input select.criteria
-
-    select.criteria.type <- match(select.criteria, c("p.value","aic"))
-    select.method <- match(method, c("forward","backward","brute.search"))
-
-    if (is.na(select.criteria.type)) { stop("Invalid select.criteria") }
-    if (is.na(select.method)) { stop("Invalid method") }
-
-    if ( method=="backward" && ns>15 ) {
-      stop ( "Backward selection appropriate to maximal 15 SNPs.\n")
-    }
-    if ( method=="brute.search" && ns>15 ) {
-      stop ( "Extensive selection appropriate to maximal 15 SNPs.\n")
-    }
-
-    if (is.na(trait.type)) { stop("Invalid trait type") }
+    trait.type <- match(type, c("binomial","gaussian","families"))
 
     switch ( type,
       gaussian =  test <- "F" ,
       binomial =  test <- "Chisq" ,
-      families   =  test <- "wTDT"  ,
-      survival = { print("not ready!") ; stop("end") }  )
+      families = test <- "wTDT" )
       
     # adjustment
       
@@ -90,18 +73,14 @@ function (  famid , patid , fid , mid , snps, trait, adj.var=NA , lim =0.05, max
        if ( adjusted ) {
            adj.var <- as.matrix(adj.var)[famorder,]
        }
-
     }
 
-      
-      
     # message input
     cat ("Start procedure: stepwise.\n")
     cat ("Individuals:           ",N, " (", N-dim(snps)[1] , " individual(s) exluded)\n",sep="")
     cat ("SNPs:                  ",ns,"\n",sep="")
     cat ("Trait type:            ",type,ifelse (adjusted," (adjusted)" , " (unadjusted)") ,"\n" ,sep="")
     cat ("Statistic:             ",test,"\n" ,sep="" )
-    cat ("Method:                ",method,  "\n",sep="" )
     cat ("Max SNPs:              ",maxSNP,"\n",sep=""  )
     cat ("Number best pattern    ",nt,"\n",sep="" )
     cat ("Threshold (lim):       ",lim,"\n",sep="" )
@@ -110,9 +89,6 @@ function (  famid , patid , fid , mid , snps, trait, adj.var=NA , lim =0.05, max
       cat ("Number of covariates:  0\n\n")
     } else {
       cat ("Number of covariates:  ",dim(adj.var)[2],"\n\n",sep="" )
-    }
-    if ( method=="brute.search" ) {
-      cat ( (2^ns-1) ,  " SNP combination are obtained.\n\n" , sep=""  )
     }
 
     N <- dim(snps)[1]
@@ -132,23 +108,17 @@ function (  famid , patid , fid , mid , snps, trait, adj.var=NA , lim =0.05, max
 ################################################################################
 
   if ( type=="binomial" ) {
-
-     if ( method == "forward" ) {
-
        # unadjusted
        if ( !adjusted ) {
          results <- msr.binomial.forward.unadjusted ( snps, trait, lim, maxSNP,
-            nt , pair.begin, pattern.begin.mat, select.criteria  ,
+            nt , pair.begin, pattern.begin.mat,
             baseline.hap , min.count )
        } else {
-       
          # adjusted
          results <- msr.binomial.forward.adjusted ( snps, trait,  adj.var, lim, maxSNP,
-            nt , pair.begin, pattern.begin.mat, select.criteria  ,
+            nt , pair.begin, pattern.begin.mat,
             baseline.hap , min.count )
-            
        }
-     } # forward
   }
 
 
@@ -158,70 +128,20 @@ function (  famid , patid , fid , mid , snps, trait, adj.var=NA , lim =0.05, max
 #                                                                              #
 ################################################################################
 
-
-
   if ( type=="gaussian" ) {
-
-     if ( method == "forward" ) {
-
        # unadjusted
        if ( !adjusted ) {
          results <- msr.gaussian.forward.unadjusted ( snps, trait, lim, maxSNP,
-            nt , pair.begin, pattern.begin.mat, select.criteria  ,
+            nt , pair.begin, pattern.begin.mat,
             baseline.hap , min.count )
        } else {
 
          # adjusted
          results <- msr.gaussian.forward.adjusted ( snps, trait,  adj.var, lim, maxSNP,
-            nt , pair.begin, pattern.begin.mat, select.criteria  ,
+            nt , pair.begin, pattern.begin.mat,
             baseline.hap , min.count )
-
        }
-     } # forward
-  }
-
-
-#    ############################################################################
-#
-#    ## forward selection
-#
-#    if ( method=="forward" ) {
-#      results <- stepwiseforward (
-#        patid=patid, snps=snps, trait=trait, adj.var=adj.var ,
-#        adjusted=adjusted, lim=lim , maxSNP=maxSNP,
-#        nt=nt, pair.begin=pair.begin, pattern.begin.mat=pattern.begin.mat,
-#        select.criteria=select.criteria,
-#        type=type, test=test , method=method ,
-#        infer.Haps.separately=infer.Haps.separately ,
-#        baseline.hap=baseline.hap , rest=rest ,
-#        min.count=min.count )
-#    }
-#
-#    ## backward selection
-#
-#    if ( method=="backward" ) {
-#      results <- stepwisebackward (
-#        patid=patid, snps=snps, trait=trait, adj.var=adj.var ,
-#        adjusted=adjusted, lim=lim , maxSNP=maxSNP,
-#        nt=nt, pair.begin=pair.begin, select.criteria=select.criteria,
-#        type=type, test=test , method=method ,
-#        infer.Haps.separately=infer.Haps.separately ,
-#        baseline.hap=baseline.hap , rest=rest ,
-#        min.count=min.count )
-#    }
-#
-#    ## extensive selection
-#    if ( method=="extensive" ) {
-#      results <- stepwiseextensive (
-#        patid=patid, snps=snps, trait=trait, adj.var=adj.var ,
-#        adjusted=adjusted, lim=lim , maxSNP=maxSNP,
-#        nt=nt, pair.begin=pair.begin, select.criteria=select.criteria,
-#        type=type, test=test , method=method ,
-#        infer.Haps.separately=infer.Haps.separately ,
-#        baseline.hap=baseline.hap , rest=rest ,
-#        min.count=min.count )
-#    }
-
+  } # gaussian
 
 ################################################################################
 #                                                                              #
@@ -230,7 +150,6 @@ function (  famid , patid , fid , mid , snps, trait, adj.var=NA , lim =0.05, max
 ################################################################################
 
   if ( type=="families" ) {
-  
     if ( !adjusted ) {
       # unadjusted
       results <- msr.families.unadjusted ( famid , patid , fid , mid ,
@@ -239,8 +158,8 @@ function (  famid , patid , fid , mid , snps, trait, adj.var=NA , lim =0.05, max
       # adjusted
       stop ( "Error in msr: weighted TDT for adjustment sets is not avaiable." )
     }
-  }
+  }  # families
 
    return ( results )
-} ## end of msr ################################################################
-
+   
+}

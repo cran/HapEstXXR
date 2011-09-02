@@ -84,4 +84,3 @@ function ( filename , linkage = TRUE , map = NA  )
         sex = sex, genotypes = geno, trait = pheno, chr = chr,
         snp = snp, pos = pos))
 }
-

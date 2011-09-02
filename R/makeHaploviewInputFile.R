@@ -17,5 +17,4 @@ function ( famid , patid , fid , mid , sex , aff , geno , marker.name ,
   write.table ( info.data , file=haploview.infofile,
       quote=F,row.names=F,col.names=F,sep="\t")
 
-} ## makeHaploviewInputFile
-
+}

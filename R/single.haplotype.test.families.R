@@ -127,7 +127,7 @@ function ( snps, trait, famid , patid ,
 
   ### RESULT: TDT - haplotype specific test
   tdt <- zzz$tdtres [zzz$tdtres!=lest]
-  tdtres <- matrix ( , ncol=4 , nrow=length(tdt))
+  tdtres <- matrix ( , ncol=5 , nrow=length(tdt))
   
   si <- min(which(unlist(strsplit(tdt[1],split=""))==":"))+1
   
@@ -139,11 +139,12 @@ function ( snps, trait, famid , patid ,
     ntrans <- hapi.test[1]
     chi2 <- (trans-ntrans)^2 / (trans+ntrans)
     pvali <- 1 - pchisq ( chi2 , 1 )
-    tdtres[i,] <- c(trans,ntrans,chi2,pvali)   
+    tdtres[i,] <- c(trans,ntrans,trans/ntrans,chi2,pvali)
 
   }
+  
     rownames(tdtres) <- c(hap)  
-    colnames(tdtres) <- c("trans","non-trans","chi square","p value")
+    colnames(tdtres) <- c("trans","non-trans","trans:non-trans","chi square","p value")
     
     ### order by haplotype frequencies
     ord <- order (freq,decreasing=T)
@@ -161,5 +162,4 @@ function ( snps, trait, famid , patid ,
   return(res.list)
   # return(zzz)
 
-} # end of  single.hap.fam
-
+}

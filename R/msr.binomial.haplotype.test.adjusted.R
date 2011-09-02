@@ -53,12 +53,11 @@ function ( snps, trait, adj.var , lim = 0.05,
             nind <-  length(fit.glm1$residuals)
 
             df <- as.integer(df.model[!is.na(df.model)] )
-            pval.model <-  (aov.glm)$`P(>|Chi|)`
+            pval.model <-  (aov.glm)$`Pr(>Chi)`
             
             pval <- as.numeric( pval.model[!is.na(pval.model)])
                                                
    return ( list ( haplotypes=1 , nSubj=nind ,
         df=df , global.p.value=pval   )  )
         
-} ###  haplotype.test
-
+}

@@ -16,6 +16,8 @@ function ( snps, trait, adj.var=NULL , prt=T  ) {
     aic  <- rep(-1,ns)
     beta <- rep(-1,ns)
     beta.stderr <- rep(-1,ns)
+    r2 <- rep(-1,ns)
+    r2.adjusted <- rep(-1,ns)
     y <- trait
 
   for ( i in 1:ns ) {
@@ -23,12 +25,12 @@ function ( snps, trait, adj.var=NULL , prt=T  ) {
     miss.value <- which(is.na(x))
     if ( length(miss.value)>0 ) {
       fit <- multi.snp.test ( y[-miss.value] , x[-miss.value,,drop=F] ,
-          x.adj=adj.var[-miss.value] , type="binomial" )
+          x.adj=adj.var[-miss.value,] , type="binomial" )
     } else {
       fit <- multi.snp.test ( y , x , x.adj=adj.var , type="binomial" )
     }
     nind[i]        <- length((fit$fit.glm1)$residuals)
-    pval.model     <- (fit$aov.glm)$`P(>|Chi|)`
+    pval.model     <- (fit$aov.glm)$`Pr(>Chi)`
 
     if ( all(is.na(pval.model)) ) {
 
@@ -58,4 +60,3 @@ function ( snps, trait, adj.var=NULL , prt=T  ) {
       "upper.95" ,"Test" ,"p.value","AIC")
   return ( res )
 }
-

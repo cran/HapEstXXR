@@ -45,17 +45,15 @@ function ( snps, trait, adj.var=NA , lim = 0.05,
 
             ## find overall p-value (goodness of fit)
 
-            df.model <-  (aov.glm)$Df
-
-            nind <-  length(fit.glm1$residuals)
-
-            df <- as.integer(df.model[!is.na(df.model)] )
-            pval.model <-  (aov.glm)$`Pr(>F)`
-            
-            pval <- as.numeric( pval.model[!is.na(pval.model)])
+            df.model   <- (aov.glm)$Df
+            nind       <- length(fit.glm1$residuals)
+            df         <- as.integer(df.model[!is.na(df.model)] )
+            f          <- as.numeric((aov.glm)$F[!is.na((aov.glm)$F)])
+            pval.model <- (aov.glm)$`Pr(>F)`           
+            pval       <- as.numeric( pval.model[!is.na(pval.model)])
+            aic        <- AIC(fit.glm1)
                                                
    return ( list ( haplotypes=1 , nSubj=nind ,
-        df=df , global.p.value=pval   )  )
-        
-} ###  haplotype.test
-
+        df=df , F=f , global.p.value=pval , AIC=aic  )  )            
+       
+}

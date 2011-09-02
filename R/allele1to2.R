@@ -15,5 +15,4 @@ function ( geno , marker.label=NULL , miss.val=NA ) {
  colnames (gg) <- paste (  rep(marker.label,each=2) , rep(c("a1","a2"),ncol(gg)/2) , sep="." )
  rownames (gg) <- rownames(geno)
  return(gg)
-} # end of allele1to2
-
+}

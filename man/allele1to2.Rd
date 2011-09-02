@@ -1,4 +1,10 @@
- \name{allele1to2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% library(HapEstXXR)
+% Created: November 30, 2011
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\name{allele1to2}
 \alias{allele1to2}
 \alias{allele2to1}
 \alias{alleleRto1}

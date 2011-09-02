@@ -163,7 +163,7 @@ cat(paste("Iteration with ",i," SNPs at same time.   System.time = ", (Sys.time(
         # create data set with all possible SNP combinations
         BestPos <- as.matrix(res.list[[i - 1]] [, 1:(i - 1),drop=F])
         storage.mode(BestPos) <- "integer"
-        newdim <- as.integer(c(dim(BestPos)[1]*(nloc-2),dim(BestPos)[2]+1))
+        newdim <- as.integer(c(dim(BestPos)[1]*(nloc-1),dim(BestPos)[2]+1))
         out <- .C("create_pattern_matrix", pattern=as.integer(BestPos) , ndim=dim(BestPos)  ,
                                snps=as.integer(1:nloc) , snplen=nloc ,
                                newpat=as.integer(rep(0,newdim[1]*newdim[2])) ,
@@ -208,5 +208,4 @@ if ( (k%%5000)==0 ) { cat(paste("Step =  ",k,"   System.time = ", (Sys.time()), 
     
   return(result=res.list)
     
-} # end of function stepwise.fam
-
+}

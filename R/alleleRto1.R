@@ -9,5 +9,4 @@ function ( geno , marker.label=NULL , miss.val=NA)  {
   colnames(geno) <- marker.label
   rownames (geno) <- rownames(geno)
   return ( geno )
-} ### alleleRto1
-
+}

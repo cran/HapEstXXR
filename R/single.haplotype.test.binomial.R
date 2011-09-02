@@ -21,7 +21,7 @@ function ( snps, trait, adj.var=NULL , lim=0.05,
           # check, if "rest" < min.count
           
           if ( any (colnames(desres)=="R") ) {
-          
+
              # skipping "rest" from design matrix when "colsum < min.count"
 
             if ( sum ( (desres[,colnames(desres)=="R"] ) ) < min.count ) {
@@ -52,7 +52,7 @@ function ( snps, trait, adj.var=NULL , lim=0.05,
 
             df <- as.integer(df.model[!is.na(df.model)] )
             
-            pval.model <-  (fit$aov.glm)$`P(>|Chi|)`
+            pval.model <-  (fit$aov.glm)$`Pr(>Chi)`
             pval <- as.numeric( pval.model[!is.na(pval.model)])
             
             aic <- AIC(fit$fit.glm1)
@@ -71,7 +71,7 @@ function ( snps, trait, adj.var=NULL , lim=0.05,
                 fiti <- multi.snp.test ( trait , desres[,i,drop=F] , adj.var ,
                     type="binomial" )
                     
-                pval.model <-  (fiti$aov.glm)$`P(>|Chi|)`
+                pval.model <-  (fiti$aov.glm)$`Pr(>Chi)`
                 pvali[i]   <- as.numeric( pval.model[!is.na(pval.model)])
                 aici[i]    <- AIC(fiti$fit.glm1)
                 betai[i]   <- as.numeric(coefficients(fiti$fit.glm1)[2])
@@ -106,5 +106,4 @@ function ( snps, trait, adj.var=NULL , lim=0.05,
                                                
    return ( res.list  )
         
-} ###  single.haplotype.test.binomial
-
+}

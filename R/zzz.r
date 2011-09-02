@@ -1,9 +1,12 @@
-# zzz.r HapEstXXR
+################################################################################
+# library(HapEstXXR)
+# Created: November 30, 2011
+#
+################################################################################
+
 # mit NAMESPACE
 .onLoad <- function (libname, pkgname)
 {
-  print("R/HapEstXXR starts.")
-  require(survival)
   library.dynam("HapEstXXR", pkgname, libname)
 
 }

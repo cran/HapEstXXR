@@ -50,5 +50,4 @@ function ( famid, patid, fid, mid , sex=NA ) {
   }
 
   return ( as.integer(ord) )
-} # end of order.families
-
+}

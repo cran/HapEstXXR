@@ -33,9 +33,9 @@ function ( geno , coding=c("minor","major") ) {
       }
       tmptab[1:4] <- rep(0,4)
     }
+
   } # coding "major"
 
 
    return ( geno )
-} # coding.baseline.allele
-
+}

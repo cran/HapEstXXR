@@ -12,8 +12,8 @@ function ( snps, trait, adj.var , lim = 0.05,
            desres <- as.matrix(hapest$desres)
 
           if ( all( is.na( hapest$hap) ) ) {
-               return ( list ( haplotypes=NA , nSubj=NA , df=NA ,
-                   global.p.value=NA ) )
+               return ( list ( haplotypes=NA , nSubj=NA , df=NA , F=NA ,
+                   global.p.value=NA , AIC=NA  ) )
             }
           
           # check, if "rest" < min.count
@@ -38,7 +38,7 @@ function ( snps, trait, adj.var , lim = 0.05,
              desres <- desres[,-c(which(hapest$hap[baseline]==colnames(desres)))  ,drop=FALSE]
            }
 
-          # generalized linear models
+           # generalized linear models
           
               # no covariates 
               
@@ -48,17 +48,15 @@ function ( snps, trait, adj.var , lim = 0.05,
 
             ## find overall p-value (goodness of fit)
 
-            df.model <-  (aov.glm)$Df
-
-            nind <-  length(fit.glm1$residuals)
-
-            df <- as.integer(df.model[!is.na(df.model)] )
-            pval.model <-  (aov.glm)$`Pr(>F)`
-            
-            pval <- as.numeric( pval.model[!is.na(pval.model)])
+            df.model   <-  (aov.glm)$Df
+            nind       <-  length(fit.glm1$residuals)
+            df         <- as.integer(df.model[!is.na(df.model)] )
+            pval.model <- (aov.glm)$`Pr(>F)`
+            pval       <- ifelse ( any(!is.na(pval.model)) , as.numeric( pval.model[!is.na(pval.model)]) , NA)
+            f          <- ifelse ( any(!is.na(pval.model)) , as.numeric((aov.glm)$F[!is.na((aov.glm)$F)])  , NA)              
+            aic        <- ifelse ( any(!is.na(pval.model)) , as.numeric(AIC(fit.glm1))  , NA) 
                                                
    return ( list ( haplotypes=1 , nSubj=nind ,
-        df=df , global.p.value=pval   )  )
+        df=df , F=f , global.p.value=pval , AIC=aic  )  )
         
-} ###  haplotype.test
-
+}

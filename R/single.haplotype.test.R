@@ -102,5 +102,4 @@ function ( snps, trait, famid , patid , fid , mid ,
 
  return ( res )
 
-} # end of single.snp.test
-
+}

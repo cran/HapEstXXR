@@ -1,7 +1,7 @@
 msr.binomial.forward.adjusted <-
 function (
     snps, trait, adj.var , lim = 0.05 , maxSNP = 3,
-    nt = 10, pair.begin = FALSE, pattern.begin.mat=NA ,select.criteria = "p.value" ,
+    nt = 10, pair.begin = FALSE, pattern.begin.mat=NA ,
     baseline.hap="max" , min.count=10 )
 {
 
@@ -34,7 +34,7 @@ function (
 
     nind <- df <- pval <- rep (NA,dim(snps)[2])
 
-    single.test <- single.snp.test ( snps , trait , prt=F , type="binomial"  )
+    single.test <- single.snp.test ( snps , trait , prt=F , adj.var=adj.var , type="binomial"  )
 
             nind  <- as.integer(single.test$N)
             df    <- as.integer(rep(1,length(single.test$N)))
@@ -136,7 +136,7 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
         snp.pos <- as.matrix(res[[i - 1]] [, 1:(i - 1),drop=F])
 
         storage.mode(snp.pos) <- "integer"
-        newdim <- as.integer(c(dim(snp.pos)[1]*(ns-2),dim(snp.pos)[2]+1))
+        newdim <- as.integer(c(dim(snp.pos)[1]*(ns-1),dim(snp.pos)[2]+1))
         out <- .C("create_pattern_matrix", pattern=as.integer(snp.pos) , ndim=dim(snp.pos)  ,
                                snps=as.integer(1:ns) , snplen=ns ,
                                newpat=as.integer(rep(0,newdim[1]*newdim[2])) ,
@@ -198,5 +198,4 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
 
     return(res)
     
-} ## end of stepwise.forward ###################################################
-
+}

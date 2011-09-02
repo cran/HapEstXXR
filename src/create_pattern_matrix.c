@@ -49,7 +49,7 @@ void create_pattern_matrix ( int *pattern  , int *patterndim ,
       if ( find==0 ) { 
         k=0;
         while ( k<patterndim[1] ) {
-          newpat(ii,k,newpatdim[0]) = pattern(i,k,patterndim[0]) ;    
+          newpat(ii,k,newpatdim[0]) = pattern(i,k,patterndim[0]) ;
           k++;
         } // while k      
       
@@ -57,8 +57,7 @@ void create_pattern_matrix ( int *pattern  , int *patterndim ,
         
         // exist ?? ---------------------------------------
         for ( it=0 ; it<newpatdim[1] ; it++ ) {
-           tmp[it] = newpat(ii,it,newpatdim[0]) ;        
-
+           tmp[it] = newpat(ii,it,newpatdim[0]) ;
         }
         exist[0]=0 ;
         it=0 ;

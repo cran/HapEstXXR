@@ -59,5 +59,4 @@ function ( famid , patid , fid , mid , sex , trait , CHR , SNP , POS ,
       if ( (i%%1000) == 0 ) cat ( i , "\n" , sep="" )
     }
   }
-} ## end of  makePlinkInputFile
-
+}

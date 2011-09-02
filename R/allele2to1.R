@@ -25,5 +25,4 @@ function ( geno , marker.label=NULL , miss.val=NA )  {
    colnames(code) <- marker.label
    rownames (code) <- rownames(geno)
    return ( code )
-} ### end of allele2to1
-
+}

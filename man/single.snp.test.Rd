@@ -1,3 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% library(HapEstXXR)
+% Created: November 30, 2011
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \name{single.snp.test}
 \alias{single.snp.test}
 \alias{single.snp.test.binomial}
@@ -5,7 +11,6 @@
 \alias{single.snp.test.families}
 \alias{single.snp.test.casecohort}
 \alias{single.snp.test.casecohort.prentice}
-\alias{single.snp.test.survival}
 \title{
 Regression analysis with single SNP genotypes as independent variable
 }
@@ -16,10 +21,11 @@ Regression analysis with single SNP genotypes as independent variable
 }
 \usage{
 single.snp.test ( snps, trait, adj.var=NULL ,
-   type = c("gaussian", "binomial", "families","survival",
-   "casecohort") , famid , patid , fid , mid ,
+   type = c("gaussian", "binomial", "families","casecohort") ,
+   famid , patid , fid , mid ,
    start.time , stop.time , subcohort , stratvar=NA , robust=F ,
-   marker.label=NA , prt=T  )
+   marker.label=NA ,
+   prt=T , ties="efron" )
 }
 \arguments{
   \item{snps}{
@@ -48,8 +54,8 @@ Character string defining type of trait, with values of gaussian, binomial, fami
   Vector of labels for marker.
 }
   \item{prt}{
-A logical value (TRUE or FALSE). If TRUE, an overview is printed.
-}
+A logical value (TRUE or FALSE). If TRUE, an overview is printed.}
+\item{ties}{defines the handling of ties in case-cohort design: "efron" (default),"breslow","exact". }
 }
 \details{
 For normal distributed phenotypes from independent individuals we prefer an F

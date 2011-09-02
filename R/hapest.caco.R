@@ -56,10 +56,10 @@ hapcaco <- data.frame (
 
     hapsi <- which(!is.na(match(colnames(desres),hapcaco[,1])))    
     desres <- as.matrix(desres[ , hapsi, drop=FALSE ])
-    desres <- desres/2
+#   desres <- desres/2
 
   if ( !any(colnames(desres)=="R") ) {
-    desres <- cbind(desres, R=1-rowSums(desres))
+    desres <- cbind(desres, R=2-rowSums(desres))
   }
   desres <- as.matrix(desres)
 
@@ -75,5 +75,4 @@ hapcaco <- data.frame (
 
   return ( list ( haplotypes=hapcaco , desres=desres  ) )
   
-}  # end of hapest.caco
-
+}

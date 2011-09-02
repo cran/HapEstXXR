@@ -4,16 +4,16 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{coding.baseline.allele}
-\alias{coding.baseline.allele}
+\name{maf}
+\alias{maf}
 \title{
-  Standardization of coding alleles
+  Minor alle frequencies
 }
 \description{
-  Dependend on minor allele frequency the coding of the alleles will be updated.
+  Calculation of minor allele frequencies (MAF),  call rate and asymptotic chisquare hardy-weinberg test
 }
 \usage{
-coding.baseline.allele(geno, coding = c("minor", "major"))
+maf ( geno , marker.label=NA )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,17 +24,20 @@ coding.baseline.allele(geno, coding = c("minor", "major"))
 
                 type R: n=number of snps
 }
-  \item{coding}{
-which type of coding should be used.
+  \item{marker.label}{
+Labels for the markers.
 }
 }
 \details{
-Allele 1 is coded as the minor allele , if coding type "minor" is used.
-Otherwise allele 1 is coded as major allele.
+Call rate is defined by number of missing genotypes divided by sample size.
+
+Testing deviation of the hardy-weinberg equilibirum is done by the usual
+goodness-of-fit chisquare test: chi2 ~ sum( (observed-expected)^2/expected ).
 }
 \value{
-This function returns the updated genotype matrix.
+This function returns an matrix with 8 coulmns.
 }
 \author{
 Sven Knueppel
 }
+

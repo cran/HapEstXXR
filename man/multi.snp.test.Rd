@@ -1,3 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% library(HapEstXXR)
+% Created: November 30, 2011
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \name{multi.snp.test}
 \alias{multi.snp.test}
 \title{
@@ -8,7 +14,7 @@ This function is used for internal computations. You should not used use it, but
 }
 \usage{
 multi.snp.test ( y , x , x.adj=NULL ,
-        type = c("gaussian", "binomial", "family","survival") )
+        type = c("gaussian", "binomial") )
 }
 \arguments{
   \item{y}{

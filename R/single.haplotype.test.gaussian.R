@@ -6,8 +6,6 @@ function ( snps, trait, adj.var=NA , lim=0.05,
 
    snps <- as.matrix(snps)
    
-   
-
           # Infer haplotypes
 
             hapest <- hapest.caco ( snps , trait , lim=lim )
@@ -99,5 +97,4 @@ function ( snps, trait, adj.var=NA , lim=0.05,
                                                
    return ( res.list  )
         
-} ###  single.haplotype.test.gaussian
-
+}

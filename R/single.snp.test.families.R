@@ -108,5 +108,4 @@ function ( snps, trait, adj.var=NULL, famid , patid ,
       p.value=pval, stringsAsFactors=F)
 
   return ( res )
-} # end of single.snp.test.families
-
+}

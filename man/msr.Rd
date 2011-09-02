@@ -1,3 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% library(HapEstXXR)
+% Created: November 30, 2011
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \name{msr}
 \alias{msr}
 \alias{msr.binomial.forward.adjusted}
@@ -8,16 +14,16 @@
 \alias{msr.gaussian.haplotype.test.unadjusted}
 \alias{msr.families.unadjusted}
 \alias{msr.gaussian.forward.adjusted}
-\alias{msr.gaussian.forward.unadjusted}
-\title{ Multi-locus stepwise regression}
+\alias{msr.gaussian.forward.unadjusted} 
+\title{ Multi-locus stepwise regression (MSR)}
 \description{
   Stepwise regression for snp selection and haplotype testing
 }
 \usage{
 msr ( famid, patid, fid, mid, snps, trait, adj.var = NA,
       lim = 0.05, maxSNP = 3, nt = 10, pair.begin = FALSE,
-      pattern.begin.mat = NA, select.criteria = "p.value",
-      type = "gaussian", method = "forward", baseline.hap = "max",
+      pattern.begin.mat = NA, 
+      type = "gaussian", baseline.hap = "max",
       min.count = 10, sort=F )
 }
 \arguments{
@@ -35,9 +41,7 @@ msr ( famid, patid, fid, mid, snps, trait, adj.var = NA,
                                       Attention: k SNP lead to choose(k,2)=k*(k-1)/2 possible pairs }
   \item{pattern.begin.mat}{if begin.pattern.mat is not NA then is this starting point of \code{msr}
                                  n=No. of snp pattern, m=No. of SNPs}
-  \item{select.criteria}{Criteria for rank the results from statistical tests: p.value or aic (Akaike's information criterion)}                                 
   \item{type}{type of depending variable}
-  \item{method}{If method=forward use forward selection. If method=backward use backward selection (under construction). If method=extensive all possible models are calculated.}
   \item{baseline.hap}{Choose baseline haplotype for statistical test to avoid singularity. "max" for most frequent haplotype and "min" for less frequent haplotype }
   \item{min.count}{minimal count of rare haplotypes}
   \item{sort}{A logical value (TRUE or FALSE). If TRUE, family data will be sorted.}
@@ -72,6 +76,6 @@ Knueppel S, Rohde K et al. Multi-locus stepwise regression: A haplotype-based
 stepwise algorithm to find haplotypes associated with genetic phenotypes.
 [in praparation]
                                           }
-\seealso{ \code{\link{msr.meta}} }
 \keyword{ stepwise regression }
+\keyword{ haplotypes }
 

@@ -29,4 +29,3 @@ function ( y , x , score=c(0,1,2) ) {
   return ( res )
       
 }
-

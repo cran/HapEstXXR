@@ -105,5 +105,4 @@ function ( geno, des=0, lim=0.05 )
            freq = as.numeric(em.freq), hapres = hr ,
            likeres = zzz$likeres, desres = as.matrix(zzz$desres)) )
 
-}   # itegeppXR #############################
-
+}

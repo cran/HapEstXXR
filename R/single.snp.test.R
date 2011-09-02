@@ -1,10 +1,10 @@
 single.snp.test <-
 function ( snps, trait, adj.var=NULL ,
-   type = c("gaussian", "binomial", "families","survival","casecohort") ,
+   type = c("gaussian", "binomial", "families","casecohort") ,
    famid , patid , fid , mid ,
    start.time , stop.time , subcohort , stratvar=NA , robust=F ,
    marker.label=NA ,
-   prt=T  ) {
+   prt=T , ties="efron" ) {
 
     type <- match.arg ( type )
     
@@ -12,7 +12,6 @@ function ( snps, trait, adj.var=NULL ,
       gaussian =  test <- "F" ,
       binomial =  test <- "Chisq" ,
       families   =  test <- "wTDT"  ,
-      survival = { print("not ready!") ; stop("end") } ,
       casecohort = test <- "case.cohort"
     )
 
@@ -81,15 +80,15 @@ function ( snps, trait, adj.var=NULL ,
            binomial   = res <- single.snp.test.binomial ( snps, trait, adj.var=adj.var , prt=prt  ) ,
            families   = { res <- single.snp.test.families ( snps, trait, adj.var=adj.var,
                             famid , patid , fid , mid , prt=prt  ) } ,
-           survival   = { print("not supported at the moment!") ; stop("end") } ,
-           casecohort = res <- single.snp.test.casecohort ( snps, trait ,
-                           patid , start.time , stop.time , subcohort , stratvar , robust=robust ,
-                           adj.var=adj.var , prt=prt  ) )
+           casecohort = res <- single.snp.test.casecohort ( snps=snps, trait=trait ,
+                           patid=patid , start.time=start.time , stop.time=stop.time ,
+                           subcohort=subcohort , stratvar=stratvar , robust=robust ,
+                           adj.var=adj.var , prt=prt ,  ties="efron"  ) )
+
 
  if (!all(is.na(marker.label))) {
    res[,"SNP"] <- marker.label
   }
  return ( res )
 
-} # end of single.snp.test
-
+}

@@ -24,5 +24,4 @@ function ( ped.file , map.file ) {
        trait=trait , genotypes=geno , marker.names=marker.names ,
        marker.position=marker.position  ) )
 
-} ### end of read.haploview
-
+}

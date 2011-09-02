@@ -141,8 +141,8 @@ void powerset_only_file( SEXP a , SEXP filename )
     if ( i!=0 ) {
       for ( jj=0 ; jj<k ; jj++ ) {
         switch(TYPEOF(a)) {
-          case INTSXP:  fprintf (fp, "%i " , INTEGER(a)[jj] ) ; break;
-          case REALSXP: fprintf (fp, "%f " , REAL(a)[jj] ) ; break;
+          case INTSXP:  fprintf (fp, "%i " , INTEGER(a)[temp[jj]] ) ; break;
+          case REALSXP: fprintf (fp, "%f " , REAL(a)[temp[jj]] ) ; break;
           case STRSXP:  fprintf (fp, "%s " , CHAR(STRING_ELT(a, temp[jj] )) ) ; break;
           default: error("type of parameter are not supported");
         }

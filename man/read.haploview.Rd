@@ -1,3 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% library(HapEstXXR)
+% Created: November 30, 2011
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \name{read.haploview}
 \alias{read.haploview}
 
@@ -33,9 +39,12 @@ read.haploview ( ped.file , map.file )
   \item{marker.position}{Base-pair position on chromosome (base pair units)}
 }
 \references{
-  Barrett JC, Fry B, Maller J, Daly MJ. Haploview: analysis and visualization
-  of LD and haplotype maps. Bioinformatics. 2005.
-}
+Barrett JC, Fry B, Maller J, Daly MJ. Haploview: analysis and visualization
+
+
+of LD and haplotype maps. Bioinformatics. 2005; 21(2):263-265. [PubMed ID: 15297300]
+
+Haploview/URL: http://www.broadinstitute.org/mpg/haploview}
 \author{
 Sven Knueppel
 }

@@ -1,3 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% library(HapEstXXR)
+% Created: November 30, 2011
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \name{order.families}
 \alias{order.families}
 \title{
@@ -16,8 +22,6 @@ order.families ( famid, patid, fid, mid, sex=NA )
   \item{mid}{vector; Identifier for mother (0=unkown)}
   \item{sex}{vector; Individuals' gender (1=male, 2=female, 0=unkown }
 }
-\details{The families are ordered by \code{sex} only this variable is given.}
-
 \author{
 Sven Knueppel
 }

@@ -39,4 +39,3 @@ function ( vec , npos=NA ) {
   rownames(binres) <- vec
   return ( binres )
 }
-

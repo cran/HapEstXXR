@@ -1,7 +1,7 @@
 msr.gaussian.forward.adjusted <-
 function (
     snps, trait, adj.var , lim = 0.05 , maxSNP = 3,
-    nt = 10, pair.begin = FALSE, pattern.begin.mat=NA ,select.criteria = "p.value" ,
+    nt = 10, pair.begin = FALSE, pattern.begin.mat=NA ,
     baseline.hap="max" , min.count=10 )
 {
 
@@ -12,7 +12,7 @@ function (
     ## Begin stepwise regression
 
     res <- list(NA)
-    
+
     if ( any(!is.na( pattern.begin.mat )) ) {
       if ( pair.begin==TRUE ) {
         stop ( paste ( "choose either",
@@ -22,8 +22,8 @@ function (
            (dim(pattern.begin.mat)[2] >= dim(snps)[2] ) )
         stop ( "dimension of begin.pattern.mat not adequate." )
     }
-    
-    
+
+
     if ( pair.begin==FALSE ) {
 
     ############################################################################
@@ -34,7 +34,7 @@ function (
 
     nind <- df <- pval <- rep (NA,dim(snps)[2])
 
-    single.test <- single.snp.test ( snps , trait , prt=F , type="gaussian"  )
+    single.test <- single.snp.test ( snps , trait , prt=F , adj.var=adj.var , type="gaussian"  )
 
             nind  <- as.integer(single.test$N)
             df    <- as.integer(rep(1,length(single.test$N)))
@@ -49,18 +49,18 @@ function (
         } else {
           ii <- (order(as.numeric(pval)))
         }
-      res[[1]] <- data.frame (a=as.integer(single.test$SNP[ii]),
-          b=rep("gaussian",length(ii)) ,
-          c=as.integer(nind[ii]) , d=as.integer(df[ii]) ,
-          e=as.numeric(pval[ii]) , stringsAsFactors=F  )
+      res[[1]] <- data.frame (as.integer(single.test$SNP[ii]),
+          rep("gaussian",length(ii)) ,
+          as.integer(nind[ii]) , as.integer(df[ii]) ,
+          as.numeric(pval[ii]) , stringsAsFactors=F  )
       colnames(res[[1]]) <- c(paste("snp", 1:i, sep = "") , "type" , "nSubj" , "df" , "p.value" )
       rownames(res[[1]]) <- 1:length(ii)
     } else {
-    
+
     ############################################################################
-    # start with all two pair haplotypes!    
+    # start with all two pair haplotypes!
     # begin pair wise
-    
+
          cat(paste("Iteration with 2 SNPs at same time.   System.time = ", Sys.time(),"\n",sep=""))
 
         # construct all pairs
@@ -104,7 +104,7 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
             pval[j]  <- hap.test$global.p.value
 
          }
-         
+
        }
 
        i <- 2
@@ -118,7 +118,7 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
         }
 
       res[[i]] <- data.frame (snp.pos[ii, ,drop=FALSE], "gaussian" ,
-          nind[ii] , df[ii] , pval[ii] , stringsAsFactors=F , row.names=1:length(ii) )
+      nind[ii] , df[ii] , pval[ii] , stringsAsFactors=F , row.names=1:length(ii) )
       colnames(res[[i]]) <- c(paste("snp", 1:i, sep = "") , "type" , "nSubj" , "df" , "p.value" )
 
       }
@@ -136,21 +136,21 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
         snp.pos <- as.matrix(res[[i - 1]] [, 1:(i - 1),drop=F])
 
         storage.mode(snp.pos) <- "integer"
-        newdim <- as.integer(c(dim(snp.pos)[1]*(ns-2),dim(snp.pos)[2]+1))
+        newdim <- as.integer(c(dim(snp.pos)[1]*(ns-1),dim(snp.pos)[2]+1))
         out <- .C("create_pattern_matrix", pattern=as.integer(snp.pos) , ndim=dim(snp.pos)  ,
                                snps=as.integer(1:ns) , snplen=ns ,
                                newpat=as.integer(rep(0,newdim[1]*newdim[2])) ,
                                newpatdim=newdim,len=as.integer(0) )
         snp.pos <- (matrix(out$newpat,nr=newdim[1] ,nc=newdim[2],byrow=F))[1:out$len,,drop=F]
-        cat(paste("Iteration with ",i," SNPs at same time. ---- ", 
+        cat(paste("Iteration with ",i," SNPs at same time. ---- ",
             dim(snp.pos)[1], " detected SNP combinations -----\n" ,sep=""))
 
         nind <- df <- pval <- rep(NA,dim(snp.pos)[1])
-        
+
         # evaluate all combinations in the step before
         k <- 0
         for (j in 1:(dim(snp.pos)[1])) {
-        
+
             Pos <- as.integer(snp.pos[j,])
             if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), "\n",sep="")) }
             geno <- matrix(snps[, Pos], N,i)
@@ -165,8 +165,8 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
                 cat ( "Step " , i ,
                 ": SNPs ", txt.pos ," all inferred haplotypes with probability " ,
                 "below threshold (lim = ",lim,")\n" , sep=""  )
-             } else {               
-               nind[j] <- hap.test$nSubj 
+             } else {
+               nind[j] <- hap.test$nSubj
                df[j]   <- hap.test$df
                pval[j] <- hap.test$global.p.value
              }
@@ -188,7 +188,7 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
           return(res)
 
         }
-        
+
         res[[i]] <- data.frame (snp.pos[ii, ,drop=FALSE], "gaussian" ,
             nind[ii] , df[ii] , pval[ii] , stringsAsFactors=F , row.names =1:length(ii) )
         colnames(res[[i]]) <- c(paste("snp", 1:i, sep = "") , "type" , "nSubj" , "df" , "p.value" )
@@ -197,6 +197,5 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
     } # while i
 
     return(res)
-    
-} ## end of stepwise.forward ###################################################
 
+}

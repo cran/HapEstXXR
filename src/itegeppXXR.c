@@ -561,10 +561,10 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
       {
       if ( hapnew[i] >= *lim ) {
     /* 07.06.2007  S.Knüppel > Beschränken der geschätzten Haplotypen. */
-    if ( (*tog==0) &&  ((nhap+1) > 100) ) {
+    if ( (*tog==0) &&  ((nhap+1) > 1500) ) {
      error ("Error in itegeppXXR: Too much estimated haplotypes. Increase option lim.") ;
     }
-    if ( (*tog==1) &&  ((nhap+1) > 60) ) {
+    if ( (*tog==1) &&  ((nhap+1) > 1500) ) {
      error ("Error in itegeppXXR: Too much estimated haplotypes. Increase option lim.") ;
     }
 

@@ -2,59 +2,34 @@
 useDynLib(HapEstXXR)
 
 export ( 
-
   itegeppXXR ,
   dec2bin,
-  
   allele1to2 , allele2to1 ,
   alleleRto1 , alleleRto2 ,
   allele1toR , allele2toR , catt ,
-
   powerset,
-
   coding.baseline.allele,
-
   makePlinkInputFile ,
-  makeHaploviewInputFile, 
-
+  makeHaploviewInputFile,
   read.data ,
   read.haploview,
-
   order.families,
-
+  maf,
   single.snp.test ,
   single.snp.test.binomial , single.snp.test.gaussian ,
-  single.snp.test.families , single.snp.test.survival , multi.snp.test,
+  single.snp.test.families , multi.snp.test,
   single.snp.test.casecohort,single.snp.test.casecohort.prentice,
-
-
-  single.haplotype.test,  single.haplotype.test.binomial , single.haplotype.test.families ,
-
-         msr ,
-         msr.binomial.forward.unadjusted ,
-         msr.binomial.forward.adjusted ,
-         msr.binomial.haplotype.test.unadjusted,
-         msr.binomial.haplotype.test.adjusted,
-         msr.families.unadjusted,
-
-
-         msr.gaussian.forward.unadjusted ,
-         msr.gaussian.forward.adjusted ,
-         msr.gaussian.haplotype.test.unadjusted,
-         msr.gaussian.haplotype.test.adjusted,
-
-
-  msr.meta,
-  msr.meta.binomial.unadjusted.families.unadjusted,
-  msr.meta.error.check,
-  meta.func,
-  meta.fisher,
-  meta.rank,
-
+  single.haplotype.test,  single.haplotype.test.binomial ,
+  single.haplotype.test.families ,
+  msr ,
+  msr.binomial.forward.unadjusted ,
+  msr.binomial.forward.adjusted ,
+  msr.binomial.haplotype.test.unadjusted,
+  msr.binomial.haplotype.test.adjusted,
+  msr.families.unadjusted,
+  msr.gaussian.forward.unadjusted ,
+  msr.gaussian.forward.adjusted ,
+  msr.gaussian.haplotype.test.unadjusted,
+  msr.gaussian.haplotype.test.adjusted,
   hapest.caco
-
-
-  )
-  
-
-
+)
