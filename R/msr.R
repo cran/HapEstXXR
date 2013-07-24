@@ -1,9 +1,9 @@
 msr <-
-function (  famid , patid , fid , mid , snps, trait,
-    adj.var=NA , lim =0.05, maxSNP = 3 ,
-    nt = 10, pair.begin = FALSE, pattern.begin.mat=NA,
+function(famid, patid, fid, mid, snps, trait,
+    adj.var = NA, lim = 0.05, maxSNP = 3,
+    nt = 10, pair.begin = FALSE, pattern.begin.mat = NA,
     type = "gaussian" ,
-    baseline.hap="max" , min.count=10 , sort=F )
+    baseline.hap = "max", min.count = 10, sort = F)
 {
 
     # init input

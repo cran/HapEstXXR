@@ -1,4 +1,4 @@
-018e4711a6512ee5f39855ef3037f06d *DESCRIPTION
+ea2e9cf43e572b82741d90a8ba33b69d *DESCRIPTION
 266fac7ae5c891f4c8296537dd9ead12 *NAMESPACE
 7a27c9428493baf14ac86dfdd999f9de *R/allele1to2.R
 d915eced680d427f786cff3f8dc8cf25 *R/allele1toR.R
@@ -14,7 +14,7 @@ e36692655bc3c7133f0c8c5495ae2440 *R/itegeppXXR.R
 78d7c969d01fe9c5e8eb4b95bc27b04f *R/maf.R
 5811f03b7302c49848030dc7f5a67503 *R/makeHaploviewInputFile.R
 737dd89228644ebef77677592cdc1489 *R/makePlinkInputFile.R
-793e6e82b098a4d6bcc9b5ce864e70cc *R/msr.R
+d82684bbf9078b7600d2759e64a9e3bb *R/msr.R
 c2a0bd47bf19ed7df62f1e1d8ae9c0f4 *R/msr.binomial.forward.adjusted.R
 8f2482cca9224091a748295b05b0d171 *R/msr.binomial.forward.unadjusted.R
 42fc4974a7332f488d2fe7ec805b5688 *R/msr.binomial.haplotype.test.adjusted.R
@@ -29,7 +29,7 @@ f56ba600403b7bbc920b2478b631c56e *R/multi.snp.test.R
 9eb3a5a3555ccdcd72ee8133af01fcca *R/powerset.R
 b57895f30c1cce9ea0d020dc37ed8cf2 *R/read.data.R
 f50681b187a1cbd1e2f62b36d33472d0 *R/read.haploview.R
-cc7a0978ef64e1ca3ff07a10165b6553 *R/single.haplotype.test.R
+bd62c5a762106da8c7a4bad5ea8e08c8 *R/single.haplotype.test.R
 c0ebd3fc6042b02aae19509dc664ed35 *R/single.haplotype.test.binomial.R
 aeae94d6b6b5d1e5618c50d1c55d3bdc *R/single.haplotype.test.families.R
 d48003df62c633a3859b3ef398873e50 *R/single.haplotype.test.gaussian.R
@@ -49,14 +49,14 @@ ee72af4a6bfe051e4671639c63ba2e1a *man/catt.Rd
 84f3caced323826f902729158dc09dec *man/maf.Rd
 8481ea65ab1a75e6fe1b8e142a30ea6f *man/makeHaploviewInputFile.Rd
 17f8dddcd69bd61ef3f5308133fe943e *man/makePlinkInputFile.Rd
-9ef194e51223ed02f82c1e075ac19ccb *man/msr.Rd
-6ac3d7740823c0af8bdf6ca2a1b262db *man/multi.snp.test.Rd
+e3947aa312bc9fc7a7a1d5d3bed8b2eb *man/msr.Rd
+2654fdba8f585a845062e4943afb6f1b *man/multi.snp.test.Rd
 4e64b89846dabd747caf277e404d3418 *man/order.families.Rd
 56559a70e219118fe6443ffa5d6ec683 *man/powerset.Rd
 c9e5b3f8305ce12d9e9793a0cd8c7bbb *man/read.data.Rd
 c7054461e122093016c30189cef45c69 *man/read.haploview.Rd
-ccc6637f0eefc5b5c60204d7bc8c94fc *man/single.haplotype.test.Rd
-35230c36146a9ba8496a9751a2aa48eb *man/single.snp.test.Rd
+ae9962d7c2c68a20146c9b30af25be49 *man/single.haplotype.test.Rd
+f7d6e8297947695d19a5e71a6f11e295 *man/single.snp.test.Rd
 7742135e288e128650d56ca54c882596 *src/HapRshort.c
 de9fa714586addcc87ed9534abc1ece2 *src/bool.h
 c1b30846a6afbab9b55f300ae7ee954b *src/create_pattern_matrix.c

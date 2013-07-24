@@ -1,9 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% library(HapEstXXR)
-% Created: November 30, 2011
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \name{msr}
 \alias{msr}
 \alias{msr.binomial.forward.adjusted}
@@ -14,17 +8,17 @@
 \alias{msr.gaussian.haplotype.test.unadjusted}
 \alias{msr.families.unadjusted}
 \alias{msr.gaussian.forward.adjusted}
-\alias{msr.gaussian.forward.unadjusted} 
-\title{ Multi-locus stepwise regression (MSR)}
+\alias{msr.gaussian.forward.unadjusted}
+\title{Multi-locus stepwise regression}
 \description{
   Stepwise regression for snp selection and haplotype testing
 }
 \usage{
-msr ( famid, patid, fid, mid, snps, trait, adj.var = NA,
-      lim = 0.05, maxSNP = 3, nt = 10, pair.begin = FALSE,
-      pattern.begin.mat = NA, 
-      type = "gaussian", baseline.hap = "max",
-      min.count = 10, sort=F )
+msr(famid, patid, fid, mid, snps, trait,
+    adj.var = NA, lim = 0.05, maxSNP = 3,
+    nt = 10, pair.begin = FALSE, pattern.begin.mat = NA,
+    type = "gaussian" ,
+    baseline.hap = "max", min.count = 10, sort = F)
 }
 \arguments{
   \item{famid}{vector; Identifier for every family; only need in case of type=families}
@@ -40,9 +34,10 @@ msr ( famid, patid, fid, mid, snps, trait, adj.var = NA,
   \item{pair.begin}{If true then will be begin with first 2 SNP genotypes.
                                       Attention: k SNP lead to choose(k,2)=k*(k-1)/2 possible pairs }
   \item{pattern.begin.mat}{if begin.pattern.mat is not NA then is this starting point of \code{msr}
-                                 n=No. of snp pattern, m=No. of SNPs}
+                                 n=No. of snp pattern, m=No. of SNPs}                                 
   \item{type}{type of depending variable}
-  \item{baseline.hap}{Choose baseline haplotype for statistical test to avoid singularity. "max" for most frequent haplotype and "min" for less frequent haplotype }
+  \item{baseline.hap}{Choose baseline haplotype for statistical test to avoid singularity.
+                      "max" for most frequent haplotype and "min" for less frequent haplotype }
   \item{min.count}{minimal count of rare haplotypes}
   \item{sort}{A logical value (TRUE or FALSE). If TRUE, family data will be sorted.}
 }
@@ -64,7 +59,7 @@ significance we assume a genetic effect. In case of family data the weigthed TDT
   \item{list}{for every step one component:
               SNP numbers and test details like p value.}
 }
-\author{ Sven Knueppel and Klaus Rohde }
+\author{Sven Knueppel and Klaus Rohde}
 \references{
 Excoffier L, Slatkin M. Mol Biol Evol. 1995 Sep;12(5):921-7.
 
@@ -72,10 +67,14 @@ Rohde K, Fuerst R. Hum Hered. 2003;56(1-3):41-7.
 
 Rohde K, Fuerst R. Hum Mutat. 2001 Apr;17(4):289-95.
 
-Knueppel S, Rohde K et al. Multi-locus stepwise regression: A haplotype-based
-stepwise algorithm to find haplotypes associated with genetic phenotypes.
-[in praparation]
-                                          }
-\keyword{ stepwise regression }
-\keyword{ haplotypes }
+Knueppel S, Esparza-Gordillo J, Marenholz I, Holzhuetter HG,
 
+Bauerfeind A, Ruether A, Weidinger S, Lee Y-A, Rohde K.
+
+Multi-locus stepwise regression: a haplotype-based algorithm
+
+for finding genetic associations applied to atopic dermatitis.
+
+BMC Med Genet 2012;13(1):8.
+}
+\keyword{stepwise regression}

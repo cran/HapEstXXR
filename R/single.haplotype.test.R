@@ -87,17 +87,35 @@ function ( snps, trait, famid , patid , fid , mid ,
     } else {
       cat ("Number of covariates:  ",dim(adj.var)[2],"\n\n",sep="" )
     }
-
   }
 
   ############################
   # single haplotype analysis
   
   switch ( type,
-           gaussian = res <- single.haplotype.test.gaussian ( snps, trait, adj.var=adj.var , lim=lim ) ,
-           binomial = res <- single.haplotype.test.binomial (  snps, trait, adj.var=adj.var , lim = lim ,
-               baseline.hap="max", do.hap.specific.test=T ,  min.count=min.count , alpha=alpha ) ,
-           families   = res <- single.haplotype.test.families ( snps, trait, famid , patid , fid , mid , lim=lim ) ,
+           gaussian = res <- single.haplotype.test.gaussian(snps,
+                                                            trait,
+                                                            adj.var = adj.var,
+                                                            lim = lim, 
+                                                            baseline.hap = "max",
+                                                            do.hap.specific.test = TRUE,
+                                                            min.count = min.count,
+                                                            alpha = alpha),
+           binomial = res <- single.haplotype.test.binomial(snps,
+                                                            trait,
+                                                            adj.var = adj.var,
+                                                            lim = lim, 
+                                                            baseline.hap = "max",
+                                                            do.hap.specific.test = TRUE,
+                                                            min.count = min.count,
+                                                            alpha = alpha) ,
+           families   = res <- single.haplotype.test.families(snps,
+                                                              trait,
+                                                              famid,
+                                                              patid,
+                                                              fid,
+                                                              mid,
+                                                              lim = lim ) ,
            survival = { print("not ready!") ; stop("end") }  )
 
  return ( res )

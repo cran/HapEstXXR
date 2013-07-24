@@ -87,10 +87,15 @@ As genetic effect the allele dosis (0, 1, 2) is modelled.
  \item{aic}{Akaike's An Information Criterion (AIC) of full model}
 }
 \references{
-Knueppel S, Rohde K et al. Multi-locus stepwise regression: A haplotype-based
-stepwise algorithm to find haplotypes associated with genetic phenotypes.
-[in praparation]
+Knueppel S, Esparza-Gordillo J, Marenholz I, Holzhuetter HG,
 
+Bauerfeind A, Ruether A, Weidinger S, Lee Y-A, Rohde K.
+
+Multi-locus stepwise regression: a haplotype-based algorithm
+
+for finding genetic associations applied to atopic dermatitis.
+
+BMC Med Genet 2012;13(1):8.
 }
 \author{
 Sven Knueppel and Klaus Rohde

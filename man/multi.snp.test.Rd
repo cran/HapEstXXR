@@ -10,7 +10,7 @@
 Internal function used for multi-locus associations tests.
 }
 \description{
-This function is used for internal computations. You should not used use it, but you can.
+This function is used for internal computations. You should not use it, but you could.
 }
 \usage{
 multi.snp.test ( y , x , x.adj=NULL ,
