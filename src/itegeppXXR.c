@@ -334,7 +334,7 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
             ac[2],
 	    drei,
 	    null,
-	    df,
+	    df = 0 /*SKn*/,
 	    combinations,
 	    nz,
 	    iqual,

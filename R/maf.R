@@ -1,7 +1,7 @@
 maf <-
 function ( geno , marker.label=NA ) {
    geno <- as.matrix(geno)
-   maf <- matrix ( 0 , nc=9 , nr=dim(geno)[2]  )
+   maf <- matrix ( 0 , ncol=9 , nrow=dim(geno)[2]  )
    colnames(maf) <- c(0:3,"Total","call.rate","minor.allele","maf","hwe.chisq.p.value")
    for ( i in 1:dim(geno)[2] ) {
      tabl <- table ( geno[,i] )
@@ -10,9 +10,8 @@ function ( geno , marker.label=NA ) {
      N <- (maf[i,"1"]+maf[i,"2"]+maf[i,"3"])
      maf[i,"Total"] <- N
      
-     maf[i,"call.rate"] <- 1- (maf[i,"0"]/N)
+     maf[i,"call.rate"] <- 1 - (maf[i,"0"]/(N+maf[i,"0"]))
      
-
      p <- (2*maf[i,"1"]+maf[i,"3"]) / N/2
      maf[i,"maf"] <- ifelse(p<=0.5 , p , 1-p)
      maf[i,"minor.allele"] <- ifelse( maf[i,"1"]<=maf[i,"2"], 1 , 2)
@@ -22,8 +21,6 @@ function ( geno , marker.label=NA ) {
      n1 <- ( 2*maf[i,"1"]+maf[i,"3"] )^2 / 4/N
      n2 <- ( 2*maf[i,"2"]+maf[i,"3"] )^2 / 4/N
      n3 <- ( 2*maf[i,"1"]+maf[i,"3"] )*( 2*maf[i,"2"]+maf[i,"3"] ) / (2*N)
-     
-
      
      expexted <-  c(n1,n2,n3)
      hwe.chisq <- sum(( observed-expexted )^2 / expexted)

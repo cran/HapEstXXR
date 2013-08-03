@@ -12,7 +12,7 @@
 /*    A parent pair may have no or up to ten children. Every         */
 /*    pair of unrelated people may be taken as as parent pair        */
 /*    without children. Unknowns (0) in the genotypes are not        */
-/*    allowed. Best states_haptdpp are found according to MLE.               */
+/*    allowed. Best states_haptdpp are found according to MLE.        */
 /*    Parameter lim limits the essential haplotypes to freq>=lim     */
 /*    Additionally the program prints out a design matrix for        */
 /*    each individual by the weights of the possible haplotype       */
@@ -955,7 +955,7 @@ void haptdpn(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
 	    df,
 	    combinations,
 	    imaxhap,/*nmin,*/
-	    nz, fz, ex, iqual, nhap, inp;
+	    nz, fz, ex =0 /*SKn*/, iqual, nhap, inp;
   uint      iterations;
   ulong     globalIterationCount = 0;
   /*

@@ -657,7 +657,7 @@ void prom(int h1,int h2,int nfam,int ist,int *hcc,int *hl,int nhap,int mult, dou
 double tdtmax_haptdpnZR(RNG rng,int nfam, int nhap, int *hcc, int *hl, int *imax, int length, char **gent, int sim, char **tres)
 {
   char      lino[400], lin[400], spa[20];
-  int 	    i, j, js, k, ks, t, n, y, ifa, ifb, mult;
+  int 	    i, j, js, k, ks, t = 0 /*SKn*/, n = 0 /*SKn*/, y, ifa, ifb, mult;
   double    s, smax, mt, mut, *sis, **tmat;
   void      printHaplotype_haptdpnZR(), pspace_haptdpnZR();
   void      printChild();
@@ -912,7 +912,7 @@ void haptdpnZR(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
 	    drei,
       null,
 	    df,
-	    combinations,
+	    combinations = 0 /*SKn*/,
 	    imaxhap, /*nmin,*/
 	    nz, fz, ex, iqual, nhap, inp;
   uint      iterations;

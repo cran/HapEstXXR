@@ -168,7 +168,7 @@ cat(paste("Iteration with ",i," SNPs at same time.   System.time = ", (Sys.time(
                                snps=as.integer(1:nloc) , snplen=nloc ,
                                newpat=as.integer(rep(0,newdim[1]*newdim[2])) ,
                                newpatdim=newdim,len=as.integer(0) )
-        BestPos <- (matrix(out$newpat,nr=newdim[1] ,nc=newdim[2],byrow=F))[1:out$len,,drop=F]
+        BestPos <- (matrix(out$newpat,nrow=newdim[1] ,ncol=newdim[2],byrow=F))[1:out$len,,drop=F]
         cat(paste("Iteration with ",i," SNPs at same time. ---- ",
             dim(BestPos)[1], " detected SNP combinations -----\n" ,sep=""))
 

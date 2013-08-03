@@ -145,7 +145,7 @@ if ( (j%%5000)==0 ) { cat(paste("Step =  ",j,"   System.time = ", (Sys.time()), 
                                snps=as.integer(1:ns) , snplen=ns ,
                                newpat=as.integer(rep(0,newdim[1]*newdim[2])) ,
                                newpatdim=newdim,len=as.integer(0) )
-        snp.pos <- (matrix(out$newpat,nr=newdim[1] ,nc=newdim[2],byrow=F))[1:out$len,,drop=F]
+        snp.pos <- (matrix(out$newpat,nrow=newdim[1] ,ncol=newdim[2],byrow=F))[1:out$len,,drop=F]
         cat(paste("Iteration with ",i," SNPs at same time. ---- ", 
             dim(snp.pos)[1], " detected SNP combinations -----\n" ,sep=""))
 
