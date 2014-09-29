@@ -56,7 +56,8 @@ function ( snps, trait, adj.var=NULL, famid , patid ,
   }
   excl.fam <- unique(excl.fam)
   if ( !is.null(excl.fam) ) {
-    print ( paste ( "Exclusion of nuclear families without two parents: " , paste(excl.fam,collapse=" ") , sep="") )
+    print ( paste ( "Exclusion of nuclear families without two parents: " , 
+                    paste(excl.fam,collapse=" ") , sep="") )
     selcond <-  !(famid %in% excl.fam)
     famid <- famid [ selcond   ]
     patid <- patid [ selcond  ]

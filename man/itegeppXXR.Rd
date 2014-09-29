@@ -11,7 +11,7 @@
   itegeppXXR is haplotype estimation routine for samples of independent individual genotypes (EM-algorithm).
 }
 \usage{
-itegeppXXR( geno, des=0, lim=0.05 )
+itegeppXXR(geno, des = 0, lim = 0.05)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -39,11 +39,11 @@ frequencies in a diploid population. Mol Biol Evol 12:921-927 }
 This function works only up to 15 SNP haplotypes
 }
 \examples{
-  set.seed ( 123456 )
+  set.seed(123456)
   ns <- 4  # Number of SNPs
   N <- 2000   # Number of individuals
   patid <- N:1
-  geno <- matrix(sample( c(1,2,3) , ns*N , replace=TRUE ),ncol=ns)
-  iteHAP <- itegeppXXR ( geno , des = 1, lim=0.01 )
+  geno <- matrix(sample(c(1, 2, 3), ns * N, replace = TRUE), ncol = ns)
+  iteHAP <- itegeppXXR(geno, des = 1, lim = 0.01)
 }
 

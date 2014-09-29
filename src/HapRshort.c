@@ -87,6 +87,8 @@ uint   ***state,          /* list haplotypes pairs per genotype             */
        ***fstate,         /* list states_haptdpp of families                        */
 	 *po;             /* list of 2 to power                             */
 
+char* CharNull = "\0"; /* 06.11.2014/SKn */
+
 typedef struct {
 	   	int fa;
 	   	int mo;
@@ -844,15 +846,20 @@ double tdtmax_haptdpp(int nfam, int nhap, int *hcc, int *hl, int *imax, char *hm
 	  /*
 	  Rprintf("\n%4d ",hl[i]);
 	  */
-	  sprintf(lino,"%4d \0",hl[i]);
+	  /* sprintf(lino,"%4d \0",hl[i]); 06.11.2014/SKn */
+       sprintf(lino,"%4d %s",hl[i], CharNull);
+    
 	  printHaplotype_haptdpp(hcc[hl[i]],length,lino);
 	  /*
 	  Rprintf("%s",lino);
 	  Rprintf(" >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\n",
 			            tmat[0][i],tmat[1][i],sis[i],s);
 	  */
-	  sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\0",
-			            tmat[0][i],tmat[1][i],sis[i],s);
+	  /* sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\0",
+			            tmat[0][i],tmat[1][i],sis[i],s); 06.11.2014/SKn */
+   sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f%s",
+  		            tmat[0][i],tmat[1][i],sis[i],s, CharNull);
+                  
 	  strcat(lino,lin);
 	  /*
 	  strcpy(tres[jjx++],lino);
@@ -868,8 +875,10 @@ double tdtmax_haptdpp(int nfam, int nhap, int *hcc, int *hl, int *imax, char *hm
 	  Rprintf(" >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\n\n",
 			            tmat[0][nhap],tmat[1][nhap],sis[nhap],s);
 	  */
-	  sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\0",
-			            tmat[0][nhap],tmat[1][nhap],sis[nhap],s);
+	  /* sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\0",
+			            tmat[0][nhap],tmat[1][nhap],sis[nhap],s); 06.11.2014/SKn */
+        sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f%s",
+			            tmat[0][nhap],tmat[1][nhap],sis[nhap],s, CharNull);
 	  strcat(lino,lin);
 	  /*
 	  strcpy(tres[jjx++],lino);
@@ -1253,9 +1262,11 @@ void haptdpn(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
       {
       
       if ( hapnew[i] >= *lim ) {
-	sprintf(lino,"%2d >> \0",i+1);
-        printHaplotype_haptdpp(hc[i], len,lino);
-        sprintf(lin," >> %8d >> %7.4f\0", hc[i], hapnew[i] );/*, hap[i]);*/
+	/* sprintf(lino,"%2d >> \0",i+1); 06.11.2014/SKn */
+     sprintf(lino,"%2d >> %s",i+1, CharNull); 
+     printHaplotype_haptdpp(hc[i], len,lino);
+        /* sprintf(lin," >> %8d >> %7.4f\0", hc[i], hapnew[i] );06.11.2014/SKn*/ /*, hap[i]);*/
+           sprintf(lin," >> %8d >> %7.4f%s", hc[i], hapnew[i], CharNull); 
 	strcat(lino,lin);
 	/*
 	strcpy(freqres[jjx++],lino);
@@ -1425,11 +1436,13 @@ void haptdpn(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
     smax = tdtmax_haptdpp(nf,nhap,hc,hlist,&imaxhap,lino,len,gent,0,tdtres);
     */
     smax = tdtmax_haptdpp(nf,nhap,hc,hlist,&imaxhap,lino,len,gent,0);
-    sprintf(lino,"%g \0",smax);
+    /* sprintf(lino,"%g \0",smax); 06.11.2014/SKn */
+       sprintf(lino,"%g %s",smax, CharNull);
     lin[0]='\0';
     printHaplotype_haptdpp(hc[imaxhap],len,lin);
     strcat(lino,lin);
-    sprintf(lin," nhap: %3d\0",nhap);
+    /* sprintf(lin," nhap: %3d\0",nhap); 06.11.2014/SKn */
+       sprintf(lino,"%g %s",smax, CharNull);
     strcat(lino,lin);
     strcpy(pvres[0],lino);
 

@@ -11,7 +11,7 @@
    Data can be loaded in different formats.
 }
 \usage{
-read.data ( filename , linkage = TRUE , map = NA  )
+read.data(filename, linkage = TRUE, map = NA)
 
 }
 %- maybe also 'usage' for other objects documented here.

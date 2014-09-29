@@ -13,7 +13,7 @@ Decimal To Binary Conversion
 \code{dec2bin} function converts a decimal number to a binary number.
 }
 \usage{
-dec2bin ( vec, npos = NA )
+dec2bin(vec, npos = NA)
 }
 \arguments{
   \item{vec}{
@@ -30,7 +30,7 @@ This is a function to converting from decimal to binary number.
   \code{dec2bin} returns a matrix.
 }
 \examples{
-binary <- dec2bin ( zz <- sample(0:100,10) )
+binary <- dec2bin(zz <- sample(0:100, 10))
 print(zz)
 print(binary)
 }

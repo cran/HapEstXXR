@@ -20,12 +20,12 @@ Regression analysis with single SNP genotypes as independent variable
  In case of family data the weighted TDT statistic is used.
 }
 \usage{
-single.snp.test ( snps, trait, adj.var=NULL ,
-   type = c("gaussian", "binomial", "families","casecohort") ,
-   famid , patid , fid , mid ,
-   start.time , stop.time , subcohort , stratvar=NA , robust=F ,
-   marker.label=NA ,
-   prt=T , ties="efron" )
+single.snp.test(snps, trait, adj.var = NULL, 
+           type = c("gaussian", "binomial", "families", "casecohort"), 
+           famid, patid, fid, mid, 
+           start.time, stop.time, subcohort, stratvar = NA, robust = FALSE, 
+           marker.label = NA, 
+           prt = TRUE, ties = "efron")
 }
 \arguments{
   \item{snps}{
@@ -107,15 +107,16 @@ Sven Knueppel and Klaus Rohde
 N <- 2000
 nloci <- 14
 set.seed(1234)
-y <- sample(c(0,1),N,replace=TRUE)
-snp <- matrix(sample(c(1,2,3),N*nloci,replace=TRUE),ncol=nloci)
-colnames(snp) <- paste("SNP",1:nloci,sep="" )
+y <- sample(c(0, 1), N, replace = TRUE)
+snp <- matrix(sample(c(1, 2, 3), N * nloci, replace = TRUE), 
+              ncol = nloci)
+colnames(snp) <- paste("SNP", 1:nloci, sep = "")
 
-adj.var <- matrix (rnorm(N*3) , ncol=3)
-colnames(adj.var) <- paste("A",1:3,sep="")
+adj.var <- matrix(rnorm(N * 3), ncol = 3)
+colnames(adj.var) <- paste("A", 1:3, sep = "")
 
-sst <- single.snp.test ( snps=snp, trait=y, adj.var=adj.var ,
-    type = "binomial"  , prt=TRUE  )
+sst <- single.snp.test(snps = snp, trait = y, adj.var = adj.var,
+    type = "binomial", prt = TRUE)
 }
 \keyword{ snp }
 \keyword{ haplotypes }

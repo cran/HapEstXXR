@@ -12,7 +12,7 @@
 #include "bool.h"
 #include "rng.h"
 #include "message.h"
-
+#include "R.h"
 
 #define Sqr(x) ((x)*(x))
 
@@ -24,7 +24,7 @@
 
 int SomeNumber(void)
 {
-  long now;
+  time_t now;
 
   time(&now);
   return (int) now;
@@ -37,19 +37,24 @@ void InitRNG(int seed, RNG rng)
 {
   static bool used = false;
 
-
+  /*06.11.2014/SKn
   if (!used) {
     used = true;
     if (seed < 0)
-      srand(SomeNumber());
+      srand(SomeNumber()); 
+      
     else
       srand(seed);
-  }
-  rng[0] = rand() % 32767;
+  }*/
+  
+  /*rng[0] = rand() % 32767;
   rng[1] = rand() % 32767;
-  rng[2] = rand() % 32767;
+  rng[2] = rand() % 32767;*/
+  /* Use random number generator of R; 06.11.2014/SKn */
+  rng[0] = (int)(unif_rand() * 32767) % 32767;
+  rng[1] = (int)(unif_rand() * 32767) % 32767;
+  rng[2] = (int)(unif_rand() * 32767) % 32767;
 }
-
 
 
 

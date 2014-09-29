@@ -16,12 +16,12 @@
 (not supported for x-linked markers)
 }
 \usage{
-allele1to2( geno , marker.label=NULL , miss.val=NA )
-allele2to1( geno , marker.label=NULL , miss.val=NA )
-alleleRto1( geno , marker.label=NULL , miss.val=NA)
-alleleRto2( geno , marker.label=NULL , miss.val=NA )
-allele1toR( geno , marker.label=NULL , miss.val=c(-1,NA) )
-allele2toR( geno , marker.label=NULL , miss.val=NA )
+allele1to2(geno, marker.label = NULL, miss.val = NA)
+allele2to1(geno, marker.label = NULL, miss.val = NA)
+alleleRto1(geno, marker.label = NULL, miss.val = NA)
+alleleRto2(geno, marker.label = NULL, miss.val = NA)
+allele1toR(geno, marker.label = NULL, miss.val = c(-1, NA))
+allele2toR(geno, marker.label = NULL, miss.val = NA)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -53,36 +53,37 @@ converted genotype matrix
  ## [A] allele1to2
  N <- 10
  ns <- 4
- (geno <- matrix(sample(c(NA,0:2), N*ns,replace=TRUE),nc=ns))
- allele1to2 (geno)
+ (geno <- matrix(sample(c(NA, 0:2), N * ns, replace = TRUE), nc = ns))
+ allele1to2(geno)
 
  ## [B] allele2to1
- (geno <- matrix ( c(0,0,1,1,2,1,1,2,
-                     1,1,2,2,2,2,1,2,
-                     0,0,1,1,2,1,0,0) ,nc=4,byrow=TRUE))
- allele2to1 (geno)
+ (geno <- matrix(c(0, 0, 1, 1, 2, 1, 1, 2,
+                   1, 1, 2, 2, 2, 2, 1, 2,
+                   0, 0, 1, 1, 2, 1, 0, 0), nc = 4, byrow = TRUE))
+ allele2to1(geno)
 
  ## [C] alleleRto1
  N <- 10
  ns <- 4
- (geno <- matrix(sample(c(NA,1:3), N*ns,replace=TRUE),nc=ns))
- alleleRto1 (geno)
+ (geno <- matrix(sample(c(NA, 1:3), N * ns, replace = TRUE), nc = ns))
+ alleleRto1(geno)
 
  ## [D] alleleRto2
  N <- 10
  ns <- 4
- (geno <- matrix(sample(c(0,1:3), N*ns,replace=TRUE),nc=ns))
- alleleRto2 (geno)
+ (geno <- matrix(sample(c(0, 1:3), N * ns, replace = TRUE), nc = ns))
+ alleleRto2(geno)
 
  ## [E] allele1toR
  N <- 10
  ns <- 4
- (geno <- matrix(sample(c(NA,0:2), N*ns,replace=TRUE),nc=ns))
- allele1toR (geno)
+ (geno <- matrix(sample(c(NA, 0:2), N * ns, replace = TRUE), nc = ns))
+ allele1toR(geno)
 
  ## [F] allele2toR
- (geno <- matrix ( c(0,0,1,1,2,1,1,2,1,1,2,2,2,2,1,2,0,0,1,1,2,1,0,0) ,
-     nc=4,byrow=TRUE))
+ (geno <- matrix(c(0, 0, 1, 1, 2, 1, 1, 2, 1, 1, 2, 2, 2, 2, 1, 2, 
+                   0, 0, 1, 1, 2, 1, 0, 0),
+     nc = 4, byrow = TRUE))
  allele2toR (geno)
 }
-\keyword{ convert }
+\keyword{convert}

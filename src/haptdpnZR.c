@@ -551,6 +551,7 @@ void tdtpchi(int nfam, int*hcc, int *hl, int nhap, double **om, char **gent, cha
 {
   int i, j, ks, ii, jj, h1, h2, mult; 
   char lino[400], lin[400];
+  char* CharNull = "\0";
   void prom();
 
   for(i=0;i<=nhap;i++)
@@ -570,11 +571,13 @@ void tdtpchi(int nfam, int*hcc, int *hl, int nhap, double **om, char **gent, cha
   strcpy(lino,"\0");
   for(i=0;i<nhap;i++)
   for(j=i;j<nhap;j++){
-  sprintf(lin," %4.3f \0",om[i][j]);
+  /* sprintf(lin," %4.3f \0",om[i][j]); 06.11.2014/SKn */
+     sprintf(lin," %4.3f %s",om[i][j], CharNull);
   strcat(lino,lin);
   om[i][j] = 0.0;
   }
-  sprintf(lin," %4.3f \0",om[nhap][nhap]);
+  /* sprintf(lin," %4.3f \0",om[nhap][nhap]); 06.11.2014/SKn */
+     sprintf(lin," %4.3f %s",om[nhap][nhap], CharNull);
   om[nhap][nhap] = 0.0;
   strcat(lino,lin);
   strcpy(dres[jjx],lino);
@@ -593,10 +596,12 @@ void tdtpchi(int nfam, int*hcc, int *hl, int nhap, double **om, char **gent, cha
   strcpy(lino,"\0");
   for(i=0;i<nhap;i++)
   for(j=i;j<nhap;j++){
-  sprintf(lin," %4.3f \0",om[i][j]);
+  /* sprintf(lin," %4.3f \0",om[i][j]); 06.11.2014/SKn */
+     sprintf(lin," %4.3f %s",om[i][j], CharNull);
   strcat(lino,lin);
   }
-  sprintf(lin," %4.3f \0",om[nhap][nhap]);
+  /* sprintf(lin," %4.3f \0",om[nhap][nhap]); 06.11.2014/SKn */
+  sprintf(lin," %4.3f %s",om[nhap][nhap], CharNull);
   strcat(lino,lin);
   strcpy(dres[jjx],lino);
   jjx++;
@@ -624,10 +629,12 @@ void tdtpchi(int nfam, int*hcc, int *hl, int nhap, double **om, char **gent, cha
   strcpy(lino,"\0");
   for(ii=0;ii<nhap;ii++)
   for(jj=ii;jj<nhap;jj++){
-  sprintf(lin," %4.3f \0",om[ii][jj]);
+  /* sprintf(lin," %4.3f \0",om[ii][jj]); 06.11.2014/SKn */
+     sprintf(lin," %4.3f %s",om[ii][jj], CharNull);
   strcat(lino,lin);
   }
-  sprintf(lin," %4.3f \0",om[nhap][nhap]);
+  /* sprintf(lin," %4.3f \0",om[nhap][nhap]); 06.11.2014/SKn */
+  sprintf(lin," %4.3f %s",om[nhap][nhap], CharNull);
   strcat(lino,lin);
   strcpy(dres[jjx],lino);
   jjx++;
@@ -657,6 +664,7 @@ void prom(int h1,int h2,int nfam,int ist,int *hcc,int *hl,int nhap,int mult, dou
 double tdtmax_haptdpnZR(RNG rng,int nfam, int nhap, int *hcc, int *hl, int *imax, int length, char **gent, int sim, char **tres)
 {
   char      lino[400], lin[400], spa[20];
+  char*     CharNull = "\0";
   int 	    i, j, js, k, ks, t = 0 /*SKn*/, n = 0 /*SKn*/, y, ifa, ifb, mult;
   double    s, smax, mt, mut, *sis, **tmat;
   void      printHaplotype_haptdpnZR(), pspace_haptdpnZR();
@@ -817,12 +825,16 @@ double tdtmax_haptdpnZR(RNG rng,int nfam, int nhap, int *hcc, int *hl, int *imax
 
 	  for(i=0;i<nhap;i++){
 /*	  Rprintf("\n%4d ",hcc[hl[i]]); *******************************************/
-	  sprintf(lino,"%4d \0",hcc[hl[i]]);
-	  printHaplotype_haptdpnZR(hcc[hl[i]],length,lino);
+	  /* sprintf(lino,"%4d \0",hcc[hl[i]]); 06.11.2014/SKn */
+	     sprintf(lino,"%4d %s",hcc[hl[i]], CharNull);
+    printHaplotype_haptdpnZR(hcc[hl[i]],length,lino);
 /*	  Rprintf(" >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\n",
 			            tmat[0][i],tmat[1][i],sis[i],s);   **************************/
-	  sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\0",
-			            tmat[0][i],tmat[1][i],sis[i],s);
+	  /* sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\0",
+			            tmat[0][i],tmat[1][i],sis[i],s); 06.11.2014/SKn */
+       sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f%s",
+			            tmat[0][i],tmat[1][i],sis[i],s, CharNull);
+                  
 	  strcat(lino,lin);
 	  strcpy(tres[jjx++],lino);
           }
@@ -834,9 +846,11 @@ double tdtmax_haptdpnZR(RNG rng,int nfam, int nhap, int *hcc, int *hl, int *imax
 	  strcat(lino,"    \0");
 /*	  Rprintf(" >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\n",
 			            tmat[0][nhap],tmat[1][nhap],sis[nhap],s);  ******************/
-	  sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\0",
-			            tmat[0][nhap],tmat[1][nhap],sis[nhap],s);
-	  strcat(lino,lin);
+	  /* sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f\0",
+			            tmat[0][nhap],tmat[1][nhap],sis[nhap],s); 06.11.201/SKn */
+       sprintf(lin," >> tr:%8.4f  ntr:%8.4f  s1: %8.4f  s: %8.4f%s",
+			            tmat[0][nhap],tmat[1][nhap],sis[nhap],s, CharNull);
+    strcat(lino,lin);
 	  strcpy(tres[jjx++],lino);
 
 	}
@@ -899,7 +913,7 @@ void haptdpnZR(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
 {
   bool      loop;
  /* char     *filename = InputFile;   name of the input file              */
-
+  char*     CharNull = "\0";
   double    likold,
             pe,
 	    smax,
@@ -1209,17 +1223,21 @@ void haptdpnZR(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
       {
       
       if ( hapnew[i] >= *lim ) {
-	sprintf(lino,"%2d >> \0",i+1);
+	/* sprintf(lino,"%2d >> \0",i+1); 06.11.2014/SKn */
+     sprintf(lino,"%2d >> %s",i+1, CharNull);
         printHaplotype_haptdpnZR(hc[i], len,lino);
-        sprintf(lin," >> %8d >> %7.4f\0",
-	hc[i], hapnew[i]  );/* , hap[i]); */
-	strcat(lino,lin);
+        /* sprintf(lin," >> %8d >> %7.4f\0",
+	hc[i], hapnew[i]  ); 06.11.2014/SKn */ /* , hap[i]); */
+        sprintf(lin," >> %8d >> %7.4f%s",
+  hc[i], hapnew[i], CharNull);/* , hap[i]); */
+strcat(lino,lin);
 	strcpy(freqres[jjx++],lino);
 	hlist[nhap++] = i;
       }
       }
 
-      sprintf(lino,"Likelihood = %f\0", likold);
+      /* sprintf(lino,"Likelihood = %f\0", likold); 06.11.2014/SKn */
+      sprintf(lino,"Likelihood = %f%s", likold, CharNull);
       strcpy(likeres[0],lino);
 
 
@@ -1261,19 +1279,26 @@ void haptdpnZR(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
       jjx=0;
       for(i=0;i<nf;i++)if(xsk[i]==1){
 /*    printf("\n%3d  %s >> ",i+1,geno[fam[i].fa]);      */
-      sprintf(lino,"%8s %8s %s >> \0",
-		      fam[i].name,fam[i].id[0],geno[fam[i].fa]);
+    /*  sprintf(lino,"%8s %8s %s >> \0",
+		      fam[i].name,fam[i].id[0],geno[fam[i].fa]); 06.11.2014/SKn */
+        sprintf(lino,"%8s %8s %s >> %s",
+  	      fam[i].name,fam[i].id[0],geno[fam[i].fa], CharNull);
+          
       printHaplotype_haptdpnZR(hc[fstate[i][pimax[i][0]][0]],len,lino);
       strcat(lino," <> \0");
       printHaplotype_haptdpnZR(hc[fstate[i][pimax[i][0]][1]],len,lino);
 
-      sprintf(lin,"  P>> %9.7f D>> %9.7f\0",
-	                 max_prob[i],max_prob[i]-p2max[i]);
+      /* sprintf(lin,"  P>> %9.7f D>> %9.7f\0",
+	                 max_prob[i],max_prob[i]-p2max[i]); 06.11.2014/SKn */
+         sprintf(lin,"  P>> %9.7f D>> %9.7f%s",
+                   max_prob[i],max_prob[i]-p2max[i], CharNull);                   
       strcat(lino,lin);
       strcpy(hapres[jjx++],lino);
 /*    printf("\n%3d  %s >> ",i+1,geno[fam[i].mo]);      */
-      sprintf(lino,"%8s %8s %s >> \0",
-		      fam[i].name,fam[i].id[1],geno[fam[i].mo]);
+      /* sprintf(lino,"%8s %8s %s >> \0",
+		      fam[i].name,fam[i].id[1],geno[fam[i].mo]); 06.11.2014/SKn */
+      sprintf(lino,"%8s %8s %s >> %s",
+  	      fam[i].name,fam[i].id[1],geno[fam[i].mo], CharNull);        
       printHaplotype_haptdpnZR(hc[fstate[i][pimax[i][0]][2]],len,lino);
       strcat(lino," <> \0");
       printHaplotype_haptdpnZR(hc[fstate[i][pimax[i][0]][3]],len,lino);
@@ -1281,8 +1306,10 @@ void haptdpnZR(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
 
       for(k=0;k<fam[i].nchi-1;k++){
 /*    printf("\n%3d  %s >> ",i+1,gent[fam[i].c[k]]);     */
-      sprintf(lino,"%8s %8s %s >> \0",
-		      fam[i].name,fam[i].id[k+2],gent[fam[i].c[k]]);
+      /* sprintf(lino,"%8s %8s %s >> \0",
+		      fam[i].name,fam[i].id[k+2],gent[fam[i].c[k]]); */
+      sprintf(lino,"%8s %8s %s >> %s",
+  	      fam[i].name,fam[i].id[k+2],gent[fam[i].c[k]], CharNull);      
       printChild(i, k,pimax[i][0],gent,1,lino);
       /*
       Rprintf("%s\n",lino);
@@ -1378,11 +1405,13 @@ void haptdpnZR(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
     
     // copy from HapRshort.c //
     smax = tdtmax_haptdpnZR(rng,nf,nhap,hc,hlist,&imaxhap,len,gent,0,tdtres);
-    sprintf(lino,"%g \0",smax);
+    /* sprintf(lino,"%g \0",smax); 06.11.2014/SKn*/
+    sprintf(lino,"%g %s",smax, CharNull);
     lin[0]='\0';
     printHaplotype_haptdpnZR(hc[imaxhap],len,lin);
     strcat(lino,lin);
-    sprintf(lin," nhap: %3d\0",nhap);
+    /* sprintf(lin," nhap: %3d\0",nhap); 06.11.2014/SKn */
+    sprintf(lin," nhap: %3d%s",nhap, CharNull);
     strcat(lino,lin);
     strcpy(pvres[0],lino);
     // End of copy //

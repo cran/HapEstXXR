@@ -12,11 +12,11 @@ Read a haploview dataset
 }
 \description{
 Data can be loaded in haploview format (linkage format) with columns of family,
-individual, father, mother, gender  (1=male, 2=male), affected status
-(0=unkown, 1=unaffected, 2=affected), and genotypes ( 2 columns alleles).
+individual, father, mother, gender  (1 = male, 2 = male), affected status
+(0 = unkown, 1 = unaffected, 2 = affected), and genotypes(2 columns alleles).
 }
 \usage{
-read.haploview ( ped.file , map.file )
+read.haploview(ped.file, map.file)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

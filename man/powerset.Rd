@@ -13,7 +13,7 @@ Generating power set of a set
 Generates the power set of a given set of values.
 }
 \usage{
- powerset (x, fileout = NA, only.file = FALSE)
+ powerset(x, fileout = NA, only.file = FALSE)
 }
 \arguments{
   \item{x}{ a vector.}

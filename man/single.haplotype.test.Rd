@@ -11,6 +11,7 @@
 \alias{single.haplotype.test.families}
 \alias{single.haplotype.test.survival}
 \alias{hapest.caco}
+\alias{hapest.gaussian}
 \title{
 single haplotype test
 }
@@ -18,11 +19,10 @@ single haplotype test
   Association test based on haplotypes. Haplotypes are estimated by EM algorithm.
 }
 \usage{
- single.haplotype.test ( snps, trait, famid , patid , fid , mid ,
-    adj.var=NULL , type = c("gaussian", "binomial", "families") ,
-    prt=T , lim=0.05 , min.count=10 , alpha=0.05 ,
-    sort=F )
-
+ single.haplotype.test(snps, trait, famid, patid, fid, mid, 
+           adj.var = NULL, type = c("gaussian", "binomial", "families"),
+           prt = TRUE, lim = 0.05, min.count = 10, 
+           alpha = 0.05, sort = FALSE)
 }
 \arguments{
   \item{snps}{(n.m)-Matrix; n=No. of individuals; m=no. of SNPs; Rohde-Code}

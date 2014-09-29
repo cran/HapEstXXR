@@ -14,31 +14,36 @@
   Stepwise regression for snp selection and haplotype testing
 }
 \usage{
-msr(famid, patid, fid, mid, snps, trait,
-    adj.var = NA, lim = 0.05, maxSNP = 3,
-    nt = 10, pair.begin = FALSE, pattern.begin.mat = NA,
-    type = "gaussian" ,
-    baseline.hap = "max", min.count = 10, sort = F)
+msr(snps, trait, famid, patid, fid, mid, 
+    adj.var = NA, lim = 0.05, maxSNP = 3, 
+    nt = 10, sort.by = "AICc", selection = 0,
+    p.threshold = NA, 
+    pair.begin = FALSE, pattern.begin.mat = NA, 
+    type = "gaussian", 
+    baseline.hap = "max", min.count = 10, sort = FALSE)
 }
 \arguments{
-  \item{famid}{vector; Identifier for every family; only need in case of type=families}
+  \item{snps}{(n, m)-Matrix; n=No. of individuals; m=no. of SNPs; Rohde-Code}
+  \item{trait}{numeric; Outcome, phenotype }
+\item{famid}{vector; Identifier for every family; only need in case of type=families}
   \item{patid}{vector; Identifier for every individuals; only need in case of type=families}
   \item{fid}{vector; Identifier for father (0=unkown); only need in case of type=families}
   \item{mid}{vector; Identifier for mother (0=unkown); only need in case of type=families}
-  \item{snps}{(n.m)-Matrix; n=No. of individuals; m=no. of SNPs; Rohde-Code}
-  \item{trait}{numeric; Outcome, phenotype }
-  \item{adj.var}{(n,m)-Matrix;   n=No. of individuals; m=no. of covariates; variables for adjustment }
+  \item{adj.var}{(n, m)-Matrix;   n = No. of individuals; m = no. of covariates; variables for adjustment }
   \item{lim}{numeric; threshold for skipping haplotypes from analysis }
   \item{maxSNP}{integer; Number of SNPs maximal group to multilocus genotypes }
   \item{nt}{integer; Number of notice best hits (for every step) }
-  \item{pair.begin}{If true then will be begin with first 2 SNP genotypes.
-                                      Attention: k SNP lead to choose(k,2)=k*(k-1)/2 possible pairs }
+  \item{sort.by}{the results in each step were sorted by "AIC", corrected ("AICc""), or p value ("p.value"). default = "AICc". }
+  \item{selection}{0 = none, 1 = improve of the lowest corrected AIC (AICc) of the step before, 2 = improve of the lowest AIC of the step before, 3 = improve of p value, 4 = improve of best ten log10(p values), 5 = improve of the single AICc by adding one SNP to the noticed pattern}
+  \item{p.threshold}{numeric vector; if global p value is lower than p.threshold[i], then the pattern will be stored for further processing. I indicates the number of SNPs. If your calculation should start with all pairwise SNPs, then p.threshold[1] will be not used but should be included.}
+\item{pair.begin}{If true then will be begin with first 2 SNP genotypes.
+                                      Attention: k SNP lead to choose(k, 2) = k * (k - 1) / 2 possible pairs }
   \item{pattern.begin.mat}{if begin.pattern.mat is not NA then is this starting point of \code{msr}
-                                 n=No. of snp pattern, m=No. of SNPs}                                 
+                                 n = No. of snp pattern, m = No. of SNPs}                                 
   \item{type}{type of depending variable}
   \item{baseline.hap}{Choose baseline haplotype for statistical test to avoid singularity.
                       "max" for most frequent haplotype and "min" for less frequent haplotype }
-  \item{min.count}{minimal count of rare haplotypes}
+  \item{min.count}{minimal count of rare haplotypes. If the count of estimated haplotypes < min.count, then the combined rare haplotypes were excluded from the analysis of that specific pattern.}
   \item{sort}{A logical value (TRUE or FALSE). If TRUE, family data will be sorted.}
 }
 \details{
@@ -57,7 +62,7 @@ significance we assume a genetic effect. In case of family data the weigthed TDT
 \value{
   \code{msr} provides a list with maxSNP components.
   \item{list}{for every step one component:
-              SNP numbers and test details like p value.}
+              SNP numbers and test details. }
 }
 \author{Sven Knueppel and Klaus Rohde}
 \references{

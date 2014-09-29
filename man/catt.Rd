@@ -8,10 +8,10 @@
 \alias{catt}
 \title{Cochrane armitage trend test (CATT) for SNP genotypes}
 \description{
-Performs chi-squared test for SNP genotypes. By default, score is chosen as the number of alleles (0,1,2).
+Performs chi-squared test for SNP genotypes. By default, score is chosen as the number of alleles (0, 1, 2).
 }
 \usage{
- catt ( y , x , score=c(0,1,2) )
+ catt(y, x, score = c(0, 1, 2))
 }
 \arguments{
   \item{y}{Vector of trait values. \code{y} must have values of 1 for event, 0 for no event. }
@@ -31,9 +31,9 @@ The Cochran-Armitage trend test is typically used in categorical data analysis w
 \references{Sasieni PD. From genotypes to genes: doubling the sample size.Biometrics. 1997 Dec;53(4):1253-61.}
 \author{Sven Knueppel}
 \examples{
-y <- sample ( c(0,1),100, replace=TRUE)
-x <- sample ( c(0,1,2),100, replace=TRUE)
-catt ( y , x )
+y <- sample(c(0, 1), 100, replace = TRUE)
+x <- sample(c(0, 1, 2), 100, replace = TRUE)
+catt(y, x)
 }
 \seealso{\code{\link{prop.trend.test}}}
 \keyword{ catt }

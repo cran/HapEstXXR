@@ -13,8 +13,8 @@ Internal function used for multi-locus associations tests.
 This function is used for internal computations. You should not use it, but you could.
 }
 \usage{
-multi.snp.test ( y , x , x.adj=NULL ,
-        type = c("gaussian", "binomial") )
+multi.snp.test(y, x, x.adj = NULL,
+        type = c("gaussian", "binomial"))
 }
 \arguments{
   \item{y}{

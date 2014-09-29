@@ -27,8 +27,11 @@
 	  Computation of the likelihood is now: f += ((double) mg[i]) * log(prob[i]) ;
   - Change in call of itegeppXR  !!!
     alternate char **likeres to double *likeres 
-  - Änderung Ausgabeformat: desres auf 8.6f  und  hapres auf 9.6f
-  - Änderung Designmatrix für tog=0
+  - Dnderung Ausgabeformat: desres auf 8.6f  und  hapres auf 9.6f
+  - Dnderung Designmatrix f|r tog=0
+0.1-7: 2014
+  - Replace Null format "\0" to char* CharNull = "\0"; 
+    sprintf(...%s..., CharNull);
 */
 
 #include <stdio.h>
@@ -86,6 +89,7 @@ int       first,          /* flaf for simulations                           */
 uint   ***state,          /* list haplotypes pairs per genotype             */
         **htpp,
 	  *po;            /* list of 2 to power                             */
+
 
 
 void pspace(int n, char *hpres)
@@ -326,6 +330,9 @@ void itegeppXXR(int *tog, double *lim, char **gent, double *qtrait,
 int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
 {
   char      lino[10000], lin[10000];
+  
+  char* CharNull = "\0"; /* 06.11.2014/SKn */
+
   double    likold,
             pe, pex,                 /* 10.3. 2000 ROHDE */
 	    *p2max,
@@ -560,7 +567,7 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
     for (i=0; i<nh; i++)
       {
       if ( hapnew[i] >= *lim ) {
-    /* 07.06.2007  S.Knüppel > Beschränken der geschätzten Haplotypen. */
+    /* 07.06.2007  S.Kn|ppel > Beschrdnken der geschdtzten Haplotypen. */
     if ( (*tog==0) &&  ((nhap+1) > 1500) ) {
      error ("Error in itegeppXXR: Too much estimated haplotypes. Increase option lim.") ;
     }
@@ -569,14 +576,17 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
     }
 
 
+       
+/*    	sprintf(lino,"\0"); 06.11.2014/SKn */  
+        sprintf(lino, CharNull);
 
-  	sprintf(lino,"\0");
-        printHaplotype(hc[i], len, lino);
+   printHaplotype(hc[i], len, lino);
 	/*
         printf("    hapnew[%8d] = %7.4f  (%7.4f)\n",
 	    hc[i], hapnew[i], hap[i]);
         */
-	sprintf(lin,"%9.6f\0", hapnew[i]);
+  /* sprintf(lin,"%9.6f\0", hapnew[i]); 06.11.2014/SKn */
+	sprintf(lin,"%9.6f%s", hapnew[i], CharNull); /* 06.11.2014/SKn */
 	strcat(lino,lin);
 	strcpy(freqres[j],lino);
 	j++;
@@ -631,7 +641,8 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
 /*    Rprintf("\n Haplotypes after MLE\n");           */
       jjx = 0;
       for(i=0;i<np;i++){
-        sprintf(lino,"%i %s >> \0",i, geno[ge[i]]);
+        /* sprintf(lino,"%i %s >> \0",i, geno[ge[i]]); 06.11.2014/SKn */
+           sprintf(lino,"%i %s >> %s",i, geno[ge[i]], CharNull);
         for(k=0;k<10;k++){
           j = pimax[ge[i]][k];
           if(j > -1){
@@ -652,7 +663,8 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
 
 /*    Rprintf("\n\n       Likelihood = %f\n", likold);
       Rprintf("\n");                                      */
-      sprintf(lino,"Likelihood = %f\0", likold);
+      /* sprintf(lino,"Likelihood = %f\0", likold); 06.11.2014/SKn */
+         sprintf(lino,"Likelihood = %f%s", likold, CharNull);
      // strcpy(likeres[0],lino);
       (*likeres) = likold ;
       
@@ -701,19 +713,22 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
       strcpy(lino,"\0");
       for(ki=0;ki<nhap;ki++){  /*  each haplotype alone   */
         for(kj=ki;kj<nhap;kj++){
-          sprintf(lin,"%8.6f \0",pgen[ge[i]][htpp[ki][kj]]);
-	        strcat(lino,lin);
+          /* sprintf(lin,"%8.6f \0",pgen[ge[i]][htpp[ki][kj]]); 06.11.2014/SKn */
+	           sprintf(lin,"%8.6f %s",pgen[ge[i]][htpp[ki][kj]], CharNull);
+          strcat(lino,lin);
 	      }
 
       }
-      sprintf(lin,"%8.6f\0",pgen[ge[i]][htpp[nhap][nhap]]);
+      
+      /* sprintf(lin,"%8.6f\0",pgen[ge[i]][htpp[nhap][nhap]]); 06.11.2014/SKn */
+         sprintf(lin,"%8.6f%s",pgen[ge[i]][htpp[nhap][nhap]], CharNull);
       strcat(lino,lin);
       strcpy(desres[jjx],lino);
       jjx++;
       }
       }
       
- /* geändert nach Klaus; Bildung Designmatrix
+ /* gedndert nach Klaus; Bildung Designmatrix
     16.09.2008 */
  
  /*     if(*tog == 0){
@@ -778,10 +793,13 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
       pehh = 0.0;
       for(j=0;j<nhap;j++){
       pehh += 2*peh[j];
-      sprintf(lin,"%8.6f \0",2*peh[j]/gsum);
+      /* sprintf(lin,"%8.6f \0",2*peh[j]/gsum); 06.11.2014/SKn */
+      sprintf(lin,"%8.6f %s",2*peh[j]/gsum, CharNull);
       strcat(lino,lin);
       }  /* end print */
-      sprintf(lin,"%8.6f\0",2.0-pehh/gsum);
+      /* sprintf(lin,"%8.6f\0",2.0-pehh/gsum); 06.11.2014/SKn */
+         sprintf(lin,"%8.6f%s",2.0-pehh/gsum, CharNull);
+      
       strcat(lino,lin);
       strcpy(desres[jjx],lino);
       jjx++;

@@ -13,9 +13,9 @@ Make PLINK input files
 Create two data sets (*.ped and *.map) as input files for PLINK
 }
 \usage{
-makePlinkInputFile ( famid , patid , fid , mid , sex , trait ,
-    CHR , SNP , POS , geno.matrix , linkage.file , map.file ,
-    cov.file )
+makePlinkInputFile(famid, patid, fid, mid, sex, trait,
+    CHR, SNP, POS, geno.matrix, linkage.file, map.file,
+    cov.file)
 }
 \arguments{
   \item{famid}{Family ID}

@@ -13,16 +13,16 @@
   Calculation of minor allele frequencies (MAF),  call rate and asymptotic chisquare hardy-weinberg test
 }
 \usage{
-maf ( geno , marker.label=NA )
+maf(geno, marker.label = NA)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{geno}{
- (m,n)-genotype matrix
+ (m, n)-genotype matrix
 
-                m=number of individuals
+                 m = number of individuals
 
-                type R: n=number of snps
+                 type R: n = number of snps
 }
   \item{marker.label}{
 Labels for the markers.

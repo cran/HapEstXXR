@@ -13,9 +13,9 @@ Make Haploview input files
 Create two data sets (*.ped and *.info) as input files for Haploview
 }
 \usage{
-makeHaploviewInputFile ( famid , patid , fid , mid , sex ,
-    aff , geno , marker.name ,  marker.position ,
-    haploview.pedfile , haploview.infofile )
+makeHaploviewInputFile(famid, patid, fid, mid, sex,
+    aff, geno, marker.name,  marker.position,
+    haploview.pedfile, haploview.infofile)
 }
 \arguments{
   \item{famid}{Family ID}
