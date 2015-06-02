@@ -1,7 +1,7 @@
 /*******************************************************************************
 
   Create powersets of a given vector
-  April, 1, 2010
+  May, 28, 2015
 
 *******************************************************************************/
 
@@ -21,7 +21,7 @@ SEXP powerset( SEXP a )
   int temp[8000],tmp=0,dec ;
 
   SEXP ans,value2 ;
-  nset = pow(2,length(a)) ;
+  nset = (int) pow(2,length(a)) ;
   PROTECT(ans = allocVector(VECSXP, nset-1));
   nprotect++;
   for(i = 0; i < nset; i++) {
@@ -69,7 +69,7 @@ SEXP powerset_file( SEXP a , SEXP filename )
   fp=fopen(CHAR(STRING_ELT(filename,0)), "w");
 
   SEXP ans,value2 ;
-  nset = pow(2,length(a)) ;
+  nset = (int) pow(2,length(a)) ;
   PROTECT(ans = allocVector(VECSXP, nset-1));
   nprotect++;
   for(i = 0; i < nset; i++) {
@@ -123,7 +123,7 @@ void powerset_only_file( SEXP a , SEXP filename )
   int temp[8000],tmp=0,dec ;
   FILE *fp;
   fp=fopen(CHAR(STRING_ELT(filename,0)), "w");
-  nset = pow(2,length(a)) ;
+  nset = (int) pow(2,length(a)) ;
   for(i = 0; i < nset; i++) {
     /* search for */
     k=0 ;

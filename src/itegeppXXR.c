@@ -361,7 +361,7 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
  if ( strlen(gent[0]) > 16 ) error ("Number of SNPs should smaller than 17.") ;
 
   np       = *xnp;
-  len      =  strlen(gent[0]) + 1;
+  len      =  (int) (strlen(gent[0]) + 1);
 
   mg       = ivector(np);
   merke    = ivector(np);
@@ -577,8 +577,10 @@ int *xnp, double *likeres, char **freqres, char **hapres, char **desres)
 
 
        
-/*    	sprintf(lino,"\0"); 06.11.2014/SKn */  
-        sprintf(lino, CharNull);
+/*    	sprintf(lino,"\0"); 02.06.2015/SKn */  
+    /*    sprintf("%s", "%s", *lino, *CharNull);*/
+       sprintf(lino, "%s", CharNull);
+
 
    printHaplotype(hc[i], len, lino);
 	/*

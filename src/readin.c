@@ -155,7 +155,7 @@ void FileLength (char *name, int *persons, int *length)
   while ((substring = readline(f, &data, 0)) != NULL) {
     if (data < 2)
       fatal("Error in \"%s\": too few data columns in line %d", name, line);
-      if(line==1)leng = strlen(substring[1]) + 1;
+      if(line==1)leng = (int) (strlen(substring[1]) + 1);
       else{
       if (leng == strlen(substring[1]) + 1) *length =leng;
       else

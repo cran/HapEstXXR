@@ -25,8 +25,9 @@ void print_vec ( char format , ... ) {
   va_list p ;                                            
   int i,n ;
   va_start ( p , format ) ;
-  format = n = va_arg ( p , int ) ;
-  format = va_arg ( p , int ) ;
+  /*format = n = va_arg ( p , int ) ; 02.06.2015 SKn*/
+  n = (int) va_arg ( p , int ) ;
+  format = (char) va_arg ( p , int ) ;
   Rprintf ( "\n" ) ;
   while ( format != 'e' ) {
     switch ( tolower(format) ) {

@@ -222,7 +222,7 @@ double *assign_d_array(double *a, unsigned n, ui2d_mapfun f)
 
   if (a && f)
     for (i = 0; i < n; i++)
-      a[i] = f(i);
+      a[i] = (double) f(i);
   return a;
 }
 
@@ -379,7 +379,7 @@ int *assign_i_array(int *a, unsigned n, ui2d_mapfun f)
 
   if (a && f)
     for (i = 0; i < n; i++)
-      a[i] = f(i);
+      a[i] = (int) f(i);
   return a;
 }
 

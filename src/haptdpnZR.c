@@ -801,7 +801,7 @@ double tdtmax_haptdpnZR(RNG rng,int nfam, int nhap, int *hcc, int *hl, int *imax
         for(i=0;i<nhap;i++){   /* not assigned haplotypes i=nhap skipped */
 		mut = tmat[0][i] - tmat[1][i];
                 mt  = tmat[0][i] + tmat[1][i];
-		if(mt)sis[i]  = mut*mut/mt;
+		if(mt != 0) sis[i]  = mut*mut/mt;
 		if( sis[i] >= smax){ /* 2006-12-12 ROHDE */
 			smax = sis[i];
 		        if(!sim)*imax = hl[i];
@@ -941,7 +941,7 @@ void haptdpnZR(char **famid, char **pid, char **gent, int *qtrait, int *xnp,
   
   nf = 1;
   for(i=0;i<np-1;i++)if(strcmp(famid[i],famid[i+1]))nf++;
-  len      = strlen(gent[0])+1;
+  len      = (int)(strlen(gent[0])+1);
 
   mg       = ivector(np);
   merke    = ivector(np);
